@@ -47,13 +47,9 @@ config/django_out.log
 config/static/
 config/start_django.bat
 
-# Deploy
-deploy.sh
 start_all.bat
 start.bat
 run_server.bat
-start_*.bat
-start_*.vbs
 agent.md
 
 # Pnpm
