@@ -1,0 +1,60 @@
+# Virtual environment
+.venv/
+venv/
+.env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+.Python
+pyvenv.cfg
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Django
+db.sqlite3
+media/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Temp scripts
+fix_*.py
+update_*.py
+rewrite_*.py
+luxury_*.py
+hide_desc.py
+simple_products.py
+rm_nav.py
+push_to_github.py
+expand_i18n.py
+deploy/
+
+# Config artifacts
+config/.env
+config/.env.example
+config/django_err.log
+config/django_out.log
+config/static/
+config/start_django.bat
+
+# Deploy
+deploy.sh
+start_all.bat
+start.bat
+run_server.bat
+start_*.bat
+start_*.vbs
+agent.md
+
+# Pnpm
+.pnpm-store/
