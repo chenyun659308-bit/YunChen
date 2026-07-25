@@ -39,7 +39,7 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
 </script>
 <template>
   <div class="products-page">
-    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">首页 / {{ t('pro_hero') }}</span><h1>{{ t('pro_hero') }}</h1><p>{{ t('pro_hero_desc') }}</p></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">首页 / {{ t('pro_hero') }}</span><h1>{{ t('pro_hero') }}</h1><p>{{ t('pro_hero_desc') }}</p></div></section>
     <div class="container main-layout">
       <!-- Left sidebar catalog -->
       <aside class="sidebar">
@@ -66,12 +66,6 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
   </div>
 </template>
 <style scoped>
-.page-hero { position: relative; background: #fafaf8; padding: 90px 0 80px; text-align: center; overflow: hidden; }
-.page-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, transparent); }
-.page-hero::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 1px; background: #c9a84c; }
-.breadcrumb { display: block; color: #c9a84c; font-size: 0.72rem; letter-spacing: 3px; margin-bottom: 16px; text-transform: uppercase; }
-.page-hero h1 { font-size: 2.6rem; font-weight: 300; color: #1a1a1a; margin-bottom: 12px; letter-spacing: 5px; }
-.page-hero p { color: #999; font-size: 0.92rem; max-width: 600px; margin: 0 auto; line-height: 1.8; }
 
 .products-page { background: #fff; }
 

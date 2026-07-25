@@ -203,6 +203,49 @@ a { text-decoration: none; color: inherit; }
   .carousel-btn { width: 36px !important; height: 36px !important; font-size: 1.4rem !important; }
 }
 
+
+@media (max-width: 768px) {
+  .top-bar { height: 32px !important; }
+  .top-bar-info, .top-bar-text { font-size: 0.6rem !important; }
+  .navbar { height: 56px !important; top: 32px !important; }
+  .logo-img { height: 32px !important; }
+  .nav-link { font-size: 0.78rem !important; letter-spacing: 1px !important; }
+  .main-content { padding-top: 88px !important; }
+  .page-hero { height: 25vh !important; min-height: 160px !important; }
+  .page-hero h1 { font-size: 1.4rem !important; letter-spacing: 2px !important; }
+  .page-hero p { font-size: 0.72rem !important; }
+  .section { padding: 25px 0 !important; }
+  .container { padding: 0 12px !important; }
+  .hero-title { font-size: 1.6rem !important; }
+  .hero-subtitle { font-size: 0.75rem !important; }
+  .product-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .product-img { height: 180px !important; }
+  .stats-grid { grid-template-columns: repeat(2,1fr) !important; gap: 10px !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .phil-grid, .spirit-grid { grid-template-columns: 1fr !important; }
+  .sample-grid { grid-template-columns: 1fr !important; }
+  .back-top { bottom: 15px !important; right: 12px !important; width: 34px !important; height: 34px !important; }
+}
+
+@media (max-width: 768px) {
+  .hero { height: 60vh !important; min-height: 400px !important; }
+  .hero-slide { background-size: cover !important; background-position: center !important; }
+  .hero-overlay { background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2)) !important; }
+  .hero-title { font-size: 2rem !important; line-height: 1.3 !important; }
+  .hero-subtitle { font-size: 0.85rem !important; margin-bottom: 30px !important; }
+  .hero-badge { margin-bottom: 20px !important; }
+  .page-hero { height: 30vh !important; min-height: 200px !important; }
+  .page-hero h1 { font-size: 1.6rem !important; }
+  .product-img { height: 240px !important; }
+  .product-img img { object-fit: contain !important; padding: 15px !important; }
+  .product-grid { gap: 15px !important; }
+  .product-card { border-radius: 8px !important; overflow: hidden !important; }
+  .detail-layout { flex-direction: column !important; }
+  .detail-image { width: 100% !important; }
+  .detail-image img { width: 100% !important; height: auto !important; max-height: 350px !important; object-fit: contain !important; }
+  .hero-bg img { object-fit: cover !important; }
+  .carousel-btn { width: 36px !important; height: 36px !important; font-size: 1.4rem !important; opacity: 0.8 !important; }
+}
 </style>
 
 
