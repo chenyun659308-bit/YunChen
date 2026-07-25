@@ -6,7 +6,7 @@ const samples = [
 </script>
 <template>
   <div class="downloads-page">
-    <section class="page-hero"><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">首页 / 样本册下载</span><h1>产品样本册</h1><p>久友电器全系列产品样本册，了解更多产品详情与技术参数</p></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">首页 / 样本册下载</span><h1>产品样本册</h1><p>久友电器全系列产品样本册，了解更多产品详情与技术参数</p></div></section>
 
     <section class="intro-section"><div class="container"><p class="intro-text">欢迎下载久友电器产品样本册。样本册涵盖公司全系列产品详细信息、技术参数及应用场景，为您提供全面的产品参考。</p></div></section>
 
@@ -77,4 +77,13 @@ const samples = [
 .tips-box { display: flex; align-items: center; gap: 12px; max-width: 600px; margin: 0 auto; padding: 16px 24px; background: #fafaf8; border: 1px solid #e8e8e3; }
 .tips-icon { color: #c9a84c; font-size: 1.1rem; flex-shrink: 0; }
 .tips-box p { color: #999; font-size: 0.78rem; margin: 0; line-height: 1.6; }
+
+.page-hero { position: relative; padding: 0; text-align: center; overflow: hidden; height: 40vh; min-height: 320px; display: flex; align-items: center; justify-content: center; }
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)); z-index: 1; }
+.hero-content { position: relative; z-index: 2; }
+.breadcrumb { display: block; color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; margin-bottom: 15px; }
+.page-hero h1 { font-size: 3rem; font-weight: 300; color: #fff; margin-bottom: 12px; letter-spacing: 5px; }
+.page-hero p { color: rgba(255,255,255,0.5); font-size: 1rem; }
 </style>

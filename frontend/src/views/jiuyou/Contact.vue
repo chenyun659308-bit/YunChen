@@ -20,7 +20,7 @@ async function submit() {
 </script>
 <template>
   <div class="contact-page">
-    <section class="page-hero"><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">首页 / {{ t('contact_hero') }}</span><h1>{{ t('contact_hero') }}</h1><p>您的声音，我们用心倾听</p></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">首页 / {{ t('contact_hero') }}</span><h1>{{ t('contact_hero') }}</h1><p>您的声音，我们用心倾听</p></div></section>
     <section class="section"><div class="container">
       <div class="contact-grid">
         <div class="contact-form-wrap"><h2>{{ t('contact_form_title') }}</h2><p class="form-desc">{{ t('contact_form_desc') }}</p>
@@ -85,4 +85,13 @@ async function submit() {
 .info-item h3 { color: #1a1a1a; font-size: 0.85rem; font-weight: 400; margin-bottom: 4px; }
 .info-item p { color: #888; font-size: 0.82rem; line-height: 1.5; }
 @media (max-width:768px) { .contact-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
+
+.page-hero { position: relative; padding: 0; text-align: center; overflow: hidden; height: 40vh; min-height: 320px; display: flex; align-items: center; justify-content: center; }
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)); z-index: 1; }
+.hero-content { position: relative; z-index: 2; }
+.breadcrumb { display: block; color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; margin-bottom: 15px; }
+.page-hero h1 { font-size: 3rem; font-weight: 300; color: #fff; margin-bottom: 12px; letter-spacing: 5px; }
+.page-hero p { color: rgba(255,255,255,0.5); font-size: 1rem; }
 </style>

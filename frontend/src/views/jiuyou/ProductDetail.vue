@@ -82,4 +82,13 @@ function goDetail(id) { router.push('/product/' + id) }
 .not-found h2 { color: #1a1a1a; margin-bottom: 20px; font-weight: 300; }
 .not-found a { color: #c9a84c; }
 @media (max-width:768px) { .detail-layout { grid-template-columns: 1fr; } .related-grid { grid-template-columns: 1fr 1fr; } .detail-features ul { grid-template-columns: 1fr; } }
+
+.page-hero { position: relative; padding: 0; text-align: center; overflow: hidden; height: 40vh; min-height: 320px; display: flex; align-items: center; justify-content: center; }
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)); z-index: 1; }
+.hero-content { position: relative; z-index: 2; }
+.breadcrumb { display: block; color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; margin-bottom: 15px; }
+.page-hero h1 { font-size: 3rem; font-weight: 300; color: #fff; margin-bottom: 12px; letter-spacing: 5px; }
+.page-hero p { color: rgba(255,255,255,0.5); font-size: 1rem; }
 </style>

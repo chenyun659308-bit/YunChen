@@ -1,5 +1,5 @@
 ﻿<script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from './i18n.js'
 
@@ -8,6 +8,10 @@ const router = useRouter()
 const menuOpen = ref(false)
 const searchQuery = ref('')
 const showDropdown = ref(false)
+const showBackTop = ref(false)
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) }
+onMounted(() => { window.addEventListener('scroll', () => { showBackTop.value = window.scrollY > 400 }) })
+
 const { t, toggleLang, locale } = useI18n()
 
 const navItems = [
@@ -64,7 +68,13 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
               </div>
             </div>
             <router-link v-else :to="item.path" class="nav-link" :class="{ active: route.path === item.path }" @click="menuOpen = false">{{ t(item.label) }}</router-link>
-          </template>
+          
+<!-- Back to top button -->
+<transition name="fade">
+  <button v-if="showBackTop" class="back-top" @click="scrollToTop">↑</button>
+</transition>
+
+</template>
 
           <div class="nav-search">
             <input v-model="searchQuery" @keyup.enter="doSearch" :placeholder="t('search_placeholder')" class="search-input">
@@ -88,6 +98,12 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
       <div class="footer-bottom"><div class="container"><p>{{ t('footer_copyright') }}</p></div></div>
     </footer>
   </div>
+
+<!-- Back to top button -->
+<transition name="fade">
+  <button v-if="showBackTop" class="back-top" @click="scrollToTop">↑</button>
+</transition>
+
 </template>
 
 <style>
@@ -152,6 +168,41 @@ a { text-decoration: none; color: inherit; }
   .footer-grid { grid-template-columns: 1fr; gap: 30px; }
   .dropdown-menu { position: static; transform: none; border: none; border-left: 2px solid #c9a84c; margin-left: 18px; padding: 5px 0; }
 }
+
+.back-top { position: fixed; bottom: 40px; right: 30px; z-index: 999; width: 44px; height: 44px; border: 1px solid rgba(201,168,76,0.3); background: rgba(255,255,255,0.95); color: #c9a84c; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; box-shadow: 0 2px 20px rgba(0,0,0,0.08); font-family: inherit; line-height: 1; }
+.back-top:hover { background: #c9a84c; color: #fff; border-color: #c9a84c; transform: translateY(-3px); box-shadow: 0 4px 25px rgba(201,168,76,0.3); }
+.fade-enter-active, .fade-leave-active { transition: opacity 0.3s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+@media (max-width: 768px) {
+  .top-bar-info, .top-bar-text { font-size: 0.65rem !important; }
+  .page-hero { height: 30vh !important; min-height: 200px !important; padding: 50px 0 40px !important; }
+  .page-hero h1 { font-size: 1.8rem !important; letter-spacing: 3px !important; }
+  .page-hero p { font-size: 0.8rem !important; }
+  .container { padding: 0 15px !important; }
+  .section { padding: 40px 0 !important; }
+  .sample-grid, .sample-card { grid-template-columns: 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr !important; gap: 25px !important; }
+  .sample-card { padding: 25px 20px !important; }
+  .hero-title { font-size: 2rem !important; }
+  .hero-subtitle { font-size: 0.85rem !important; }
+  .stats-grid { grid-template-columns: repeat(2,1fr) !important; gap: 15px !important; }
+  .phil-grid { grid-template-columns: 1fr !important; }
+  .spirit-grid { grid-template-columns: 1fr !important; }
+  .product-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .detail-layout { flex-direction: column !important; }
+  .sidebar { display: none !important; }
+  .main-layout { flex-direction: column !important; }
+  .back-top { bottom: 20px; right: 15px; width: 38px; height: 38px; font-size: 1rem; }
+}
+@media (max-width: 480px) {
+  .product-grid { grid-template-columns: 1fr !important; }
+  .hero-title { font-size: 1.5rem !important; }
+  .page-hero h1 { font-size: 1.4rem !important; }
+  .breadcrumb { font-size: 0.65rem !important; }
+  .carousel-btn { width: 36px !important; height: 36px !important; font-size: 1.4rem !important; }
+}
+
 </style>
 
 

@@ -1,4 +1,4 @@
-<script setup>
+﻿<script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { products } from '../../data/products.js'
 import { news } from '../../data/news.js'
@@ -8,6 +8,8 @@ const latestNews = news.slice(0, 3)
 const scrollY = ref(0)
 const currentSlide = ref(0)
 let slideTimer = null
+function prevSlide() { currentSlide.value = (currentSlide.value - 1 + slides.length) % slides.length }
+function nextSlide() { currentSlide.value = (currentSlide.value + 1) % slides.length }
 
 const slides = [
   '/carousel/banner1.jpg',
@@ -27,7 +29,11 @@ onUnmounted(() => { if (slideTimer) clearInterval(slideTimer) })
 </script>
 <template>
   <div class="home-page">
-    <section class="hero"><div v-for="(img, i) in slides" :key="i" class="hero-slide" :class="{ active: i === currentSlide }" :style="{ backgroundImage: &apos;url(&apos; + img + &apos;)&apos; }"></div><div class="hero-overlay"></div><div class="hero-content"><span class="hero-badge">JIUYOU · 始于2001</span><h1 class="hero-title">久友电器<br/><span class="gold">智造品质生活</span></h1><p class="hero-subtitle">专注电风扇与取暖器 · 让每个家庭享受科技带来的舒适与便捷</p><div class="hero-actions"><router-link to="/products" class="btn-primary">探索产品</router-link><router-link to="/about" class="btn-outline">了解久友</router-link></div></div></section>
+    <section class="hero"><div v-for="(img, i) in slides" :key="i" class="hero-slide" :class="{ active: i === currentSlide }" :style="{ backgroundImage: &apos;url(&apos; + img + &apos;)&apos; }"></div><div class="hero-overlay"></div><div class="hero-content"><span class="hero-badge">JIUYOU · 始于2001</span><h1 class="hero-title">久友电器<br/><span class="gold">智造品质生活</span></h1><p class="hero-subtitle">专注电风扇与取暖器 · 让每个家庭享受科技带来的舒适与便捷</p><div class="hero-actions"><router-link to="/products" class="btn-primary">探索产品</router-link><router-link to="/about" class="btn-outline">了解久友</router-link></div></div>
+
+
+<button class="carousel-btn carousel-prev" @click="prevSlide">‹</button>
+<button class="carousel-btn carousel-next" @click="nextSlide">›</button></section>
     <section class="stats"><div class="container"><div class="stats-grid"><div v-for="(s,i) in [{n:&apos;2001&apos;,l:&apos;公司成立&apos;},{n:&apos;40+&apos;,l:&apos;出口国家&apos;},{n:&apos;10+&apos;,l:&apos;国内省市&apos;},{n:&apos;8&apos;,l:&apos;国际认证&apos;},{n:&apos;ISO&apos;,l:&apos;体系认证&apos;}]" :key="i" class="stat-item"><span class="stat-num">{{ s.n }}</span><span class="stat-label">{{ s.l }}</span></div></div></div></section>
     <section class="about-section"><div class="container"><div class="section-header"><span class="section-tag">关于我们</span><h2 class="section-title">始于2001 · 专注电风扇与取暖器</h2></div><p>浙江久友电器科技有限公司成立于2001年，专注于电风扇和取暖器两大系列产品的研究、开发、生产及销售。</p><p>产品出口欧洲、中东、非洲、南美等40多个国家和地区。电风扇出口量连续几年稳居慈溪市电风扇生产企业前列。</p></div></section>
   </div>
@@ -59,4 +65,18 @@ onUnmounted(() => { if (slideTimer) clearInterval(slideTimer) })
 .about-section .section-tag { display: block; margin-bottom: 15px; }
 .section-tag { color: #c9a84c; font-size: 0.72rem; letter-spacing: 3px; }
 .section-title { font-size: 1.8rem; font-weight: 300; color: #1a1a1a; margin: 10px 0; letter-spacing: 2px; }
+
+
+
+.slide-prev { left: 30px; }
+.slide-next { right: 30px; }
+
+.carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 56px; height: 56px; border: 1px solid rgba(255,255,255,0.15); background: rgba(0,0,0,0.25); color: rgba(255,255,255,0.5); font-size: 2.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; border-radius: 50%; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); font-family: inherit; line-height: 1; outline: none; }
+.carousel-btn:hover { background: rgba(0,0,0,0.5); color: #c9a84c; border-color: rgba(201,168,76,0.5); transform: translateY(-50%) scale(1.05); }
+.carousel-prev { left: 24px; }
+.carousel-next { right: 24px; }
 </style>
+
+
+
+
