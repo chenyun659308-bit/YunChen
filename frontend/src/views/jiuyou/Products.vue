@@ -39,7 +39,7 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
 </script>
 <template>
   <div class="products-page">
-    <section class="page-hero"><div class="hero-content"><span class="breadcrumb">首页 / {{ t('pro_hero') }}</span><h1>{{ t('pro_hero') }}</h1><p>{{ t('pro_hero_desc') }}</p></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">首页 / {{ t('pro_hero') }}</span><h1>{{ t('pro_hero') }}</h1><p>{{ t('pro_hero_desc') }}</p></div></section>
     <div class="container main-layout">
       <!-- Left sidebar catalog -->
       <aside class="sidebar">
@@ -66,12 +66,12 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
   </div>
 </template>
 <style scoped>
+
 .products-page { background: #fff; }
-.page-hero { position: relative; background: linear-gradient(135deg, #fafaf8, #f0f0ee, #fafaf8); background-size: 400% 400%; animation: heroBgShift 8s ease infinite; padding: 100px 0 85px; text-align: center; overflow: hidden; }
-.page-hero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, #d4b85a, #c9a84c, transparent); background-size: 200% 100%; animation: heroGlowBar 3s ease-in-out infinite; }
-.breadcrumb { display: block; color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; margin-bottom: 12px; }
-.page-hero h1 { font-size: 2.8rem; font-weight: 300; color: #fff; margin-bottom: 10px; letter-spacing: 4px; }
-.page-hero p { color: rgba(255,255,255,0.45); font-size: 1rem; }
+
+
+
+
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .main-layout { display: flex; gap: 40px; padding: 40px 20px; align-items: flex-start; }
 
@@ -85,12 +85,10 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
 .toggle-icon { font-size: 1rem; color: #c9a84c; line-height: 1; user-select: none; width: 20px; text-align: center; transition: transform 0.2s; }
 .toggle-icon:hover { opacity: 0.7; }
 .sidebar-list { list-style: none; padding: 0; margin: 0; overflow: hidden; }
-.page-hero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, #d4b85a, #c9a84c, transparent); background-size: 200% 100%; animation: heroGlowBar 3s ease-in-out infinite; }
 .sidebar-item { padding: 6px 10px 6px 18px; color: #888; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; border-left: 1px solid #e8e8e3; }
 .sidebar-item:hover { color: #1a1a1a; border-left-color: #c9a84c; padding-left: 22px; }
  
 .collapse-enter-active, .collapse-leave-active { transition: all 0.25s ease; overflow: hidden; }
-.page-hero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, #d4b85a, #c9a84c, transparent); background-size: 200% 100%; animation: heroGlowBar 3s ease-in-out infinite; }
 .collapse-enter-from, .collapse-leave-to { opacity: 0; max-height: 0; padding-top: 0; padding-bottom: 0; }
 .collapse-enter-to, .collapse-leave-from { opacity: 1; max-height: 300px; }
 
@@ -133,12 +131,12 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
   .search-input { width: 100%; }
 }
 
-@keyframes heroBgShift {
-  0%,100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-@keyframes heroGlowBar {
-  0%,100% { background-position: 0% 0%; }
-  50% { background-position: 100% 0%; }
-}
+.page-hero { position: relative; padding: 0; text-align: center; overflow: hidden; height: 40vh; min-height: 320px; display: flex; align-items: center; justify-content: center; }
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3)); z-index: 1; }
+.hero-content { position: relative; z-index: 2; }
+.breadcrumb { display: block; color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; margin-bottom: 15px; }
+.page-hero h1 { font-size: 3rem; font-weight: 300; color: #fff; margin-bottom: 12px; letter-spacing: 5px; }
+.page-hero p { color: rgba(255,255,255,0.5); font-size: 1rem; }
 </style>
