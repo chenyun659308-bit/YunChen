@@ -6,7 +6,7 @@ const samples = [
 </script>
 <template>
   <div class="downloads-page">
-    <section class="page-hero"><div class="hero-content"><span class="breadcrumb">首页 / 样本册下载</span><h1>产品样本册</h1><p>久友电器全系列产品样本册，了解更多产品详情与技术参数</p></div></section>
+    <section class="page-hero"><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">首页 / 样本册下载</span><h1>产品样本册</h1><p>久友电器全系列产品样本册，了解更多产品详情与技术参数</p></div></section>
 
     <section class="intro-section"><div class="container"><p class="intro-text">欢迎下载久友电器产品样本册。样本册涵盖公司全系列产品详细信息、技术参数及应用场景，为您提供全面的产品参考。</p></div></section>
 
@@ -29,19 +29,26 @@ const samples = [
   </div>
 </template>
 <style scoped>
-.page-hero { background: #1a1a1a; padding: 70px 0; text-align: center; }
-.breadcrumb { display: block; color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; margin-bottom: 12px; }
-.page-hero h1 { font-size: 2.8rem; font-weight: 300; color: #fff; margin-bottom: 10px; letter-spacing: 4px; }
-.page-hero p { color: rgba(255,255,255,0.45); font-size: 1rem; }
+.page-hero { position: relative; background: #fafaf8; padding: 90px 0 80px; text-align: center; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, transparent); }
+.page-hero::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 1px; background: #c9a84c; }
+.breadcrumb { display: block; color: #c9a84c; font-size: 0.72rem; letter-spacing: 3px; margin-bottom: 16px; text-transform: uppercase; }
+.page-hero h1 { font-size: 2.6rem; font-weight: 300; color: #1a1a1a; margin-bottom: 12px; letter-spacing: 5px; }
+.page-hero p { color: #999; font-size: 0.92rem; max-width: 600px; margin: 0 auto; line-height: 1.8; }
+
+
+
+
+
 
 .downloads-page { background: #fff; }
 
 
 
-.hero-content { position: relative; z-index: 2; text-align: center; }
 
-.hero-content h1 { font-size: 3rem; color: #fff; font-weight: 300; margin-bottom: 12px; letter-spacing: 5px; }
-.hero-content p { color: rgba(255,255,255,0.5); font-size: 0.95rem; }
+
+
+
 .intro-section { padding: 50px 0 0; text-align: center; }
 .intro-text { max-width: 680px; margin: 0 auto; color: #888; font-size: 0.9rem; line-height: 1.9; }
 .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }

@@ -66,11 +66,18 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
   </div>
 </template>
 <style scoped>
+.page-hero { position: relative; background: #fafaf8; padding: 90px 0 80px; text-align: center; overflow: hidden; }
+.page-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, transparent); }
+.page-hero::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 1px; background: #c9a84c; }
+.breadcrumb { display: block; color: #c9a84c; font-size: 0.72rem; letter-spacing: 3px; margin-bottom: 16px; text-transform: uppercase; }
+.page-hero h1 { font-size: 2.6rem; font-weight: 300; color: #1a1a1a; margin-bottom: 12px; letter-spacing: 5px; }
+.page-hero p { color: #999; font-size: 0.92rem; max-width: 600px; margin: 0 auto; line-height: 1.8; }
+
 .products-page { background: #fff; }
-.page-hero { background: #1a1a1a; padding: 70px 0; text-align: center; }
-.breadcrumb { display: block; color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; margin-bottom: 12px; }
-.page-hero h1 { font-size: 2.8rem; font-weight: 300; color: #fff; margin-bottom: 10px; letter-spacing: 4px; }
-.page-hero p { color: rgba(255,255,255,0.45); font-size: 1rem; }
+
+
+
+
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .main-layout { display: flex; gap: 40px; padding: 40px 20px; align-items: flex-start; }
 
