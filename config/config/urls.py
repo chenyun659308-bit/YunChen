@@ -8,7 +8,10 @@ def spa(r):
 urlpatterns = [path('admin/',admin.site.urls), path('api/',include('main.urls'))]
 from django.conf.urls.static import static
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += [re_path(r'^favicon\.ico$', serve, {'document_root': settings.FRONTEND_DIST_DIR})]
+urlpatterns += [re_path(r'^logo\.png$', serve, {'document_root': settings.FRONTEND_DIST_DIR})]
 urlpatterns += [re_path(r'^carousel/(?P<path>.*)$', serve, {'document_root': settings.FRONTEND_DIST_DIR.parent / 'public' / 'carousel'})]
 urlpatterns += [re_path(r'^products/(?P<path>.*)$', serve, {'document_root': settings.FRONTEND_DIST_DIR / 'products'})]
 urlpatterns += [re_path(r'^assets/(?P<path>.*)$', serve, {'document_root': settings.FRONTEND_DIST_DIR / 'assets'})]
-urlpatterns += [re_path(r'^(?!admin|api|static|assets|products|carousel).*$', spa)]
+urlpatterns += [re_path(r'^(?!admin|api|static|assets|products|carousel|favicon|logo).*$', spa)]
+
