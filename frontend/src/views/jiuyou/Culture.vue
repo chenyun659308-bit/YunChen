@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="culture-page">
-    <section class="page-hero"><div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">首页 / 企业文化</span><h1>企业文化</h1><p>以文化凝聚力量，用创新引领未来</p></div></section>
+    <section class="page-hero"><div class="hero-content"><span class="breadcrumb">首页 / 企业文化</span><h1>企业文化</h1><p>以文化凝聚力量，用创新引领未来</p></div></section>
 
     <section class="section intro-section"><div class="container"><p class="intro-text">企业文化是企业的灵魂，是推动企业发展的不竭动力。久友电器以"包容、创新、高效、共赢"为核心价值观，致力于为全球家庭打造舒适、安全、健康的居家生活体验。</p></div></section>
 
@@ -32,12 +32,17 @@
   </div>
 </template>
 <style scoped>
-.culture-page { background: #fff; }
-.page-hero { position: relative; height: 50vh; min-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0; background: url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&h=600&fit=crop) center/cover; }
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg,rgba(0,0,0,0.8),rgba(0,0,0,0.4)); z-index: 1; }
-.hero-content { position: relative; z-index: 2; text-align: center; }
+.page-hero { background: #1a1a1a; padding: 70px 0; text-align: center; }
 .breadcrumb { display: block; color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; margin-bottom: 12px; }
+.page-hero h1 { font-size: 2.8rem; font-weight: 300; color: #fff; margin-bottom: 10px; letter-spacing: 4px; }
+.page-hero p { color: rgba(255,255,255,0.45); font-size: 1rem; }
+
+.culture-page { background: #fff; }
+
+
+
+.hero-content { position: relative; z-index: 2; text-align: center; }
+
 .hero-content h1 { font-size: 3.2rem; color: #fff; font-weight: 300; margin-bottom: 12px; letter-spacing: 5px; }
 .hero-content p { color: rgba(255,255,255,0.5); }
 .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }

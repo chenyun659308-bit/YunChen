@@ -8,7 +8,7 @@ const honors = [
 </script>
 <template>
   <div class="about-page">
-    <section class="page-hero"><div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">首页 / 关于我们</span><h1>关于我们</h1><p>专注电风扇与取暖器</p></div></section>
+    <section class="page-hero"><div class="hero-content"><span class="breadcrumb">首页 / 关于我们</span><h1>关于我们</h1><p>专注电风扇与取暖器</p></div></section>
 
     <!-- Company intro -->
     <section class="section"><div class="container"><div class="section-header"><span class="section-tag">ABOUT JIUYOU</span><h2 class="section-title">{{ t('about_hero_title') }}</h2></div>
@@ -37,12 +37,17 @@ const honors = [
   </div>
 </template>
 <style scoped>
+.page-hero { background: #1a1a1a; padding: 70px 0; text-align: center; }
+.breadcrumb { display: block; color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; margin-bottom: 12px; }
+.page-hero h1 { font-size: 2.8rem; font-weight: 300; color: #fff; margin-bottom: 10px; letter-spacing: 4px; }
+.page-hero p { color: rgba(255,255,255,0.45); font-size: 1rem; }
+
 .about-page { background: #fff; }
-.page-hero { position: relative; height: 50vh; min-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.hero-bg { position: absolute; inset: 0; background: url(https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=700&fit=crop) center/cover; }
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg,rgba(0,0,0,0.8),rgba(0,0,0,0.4)); z-index: 1; }
+
+
+
 .hero-content { position: relative; z-index: 2; text-align: center; }
-.breadcrumb { color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; }
+
 .hero-content h1 { font-size: 3rem; color: #fff; font-weight: 300; margin: 15px 0; letter-spacing: 4px; }
 .hero-content p { color: rgba(255,255,255,0.5); font-size: 1.05rem; }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }

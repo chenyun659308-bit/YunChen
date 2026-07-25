@@ -7,7 +7,7 @@ const zh = {
   slogan: '智慧家庭解决方案提供商',
   nav_home: '首页', nav_about: '关于我们', nav_culture: '企业文化',
   nav_products: '产品中心', nav_news: '新闻中心', nav_downloads: '下载中心',
-  nav_contact: '在线留言', nav_search: '搜索产品...',
+  nav_contact: '在线留言', contact_hero: '在线留言', nav_search: '搜索产品...',
   email: 'ethan@nbjoyo.com',
   phone: '13858340134',
   address: '浙江省慈溪市新浦镇上舍村',
@@ -70,7 +70,7 @@ const en = {
   slogan: 'Smart Home Solution Provider',
   nav_home: 'Home', nav_about: 'About', nav_culture: 'Culture',
   nav_products: 'Products', nav_news: 'News', nav_downloads: 'Downloads',
-  nav_contact: 'Contact', nav_search: 'Search products...',
+  nav_contact: 'Contact', contact_hero: 'Contact Us', nav_search: 'Search products...',
   email: 'ethan@nbjoyo.com',
   phone: '13858340134',
   address: 'Shangshe Village, Xinpu Town, Cixi, Zhejiang',
@@ -138,3 +138,4 @@ export function useI18n() {
   const toggleLang = () => { locale.value = locale.value === 'zh' ? 'en' : 'zh' }
   return { locale, t, toggleLang, l }
 }
+
