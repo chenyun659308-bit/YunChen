@@ -19,5 +19,7 @@ urlpatterns += [re_path(r'^(?P<path>logo\.png)$', serve, {'document_root': setti
 urlpatterns += [re_path(r'^carousel/(?P<path>.*)$', serve, {'document_root': settings.FRONTEND_DIST_DIR.parent / 'public' / 'carousel'})]
 urlpatterns += [re_path(r'^products/(?P<path>.*)$', serve, {'document_root': settings.FRONTEND_DIST_DIR / 'products'})]
 urlpatterns += [re_path(r'^assets/(?P<path>.*)$', serve, {'document_root': settings.FRONTEND_DIST_DIR / 'assets'})]
-urlpatterns += [re_path(r'^(?!admin|api|static|assets|products|carousel|favicon|logo).*$', spa)]
+urlpatterns += [re_path(r'^(?!admin|api|static|assets|products|carousel|favicon|logo|downloads).*$', spa)]
+
+
 
