@@ -80,7 +80,7 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
 
     <footer class="footer">
       <div class="container footer-grid">
-        <div class="footer-brand"><h3>{{ t('company') }}</h3><p>{{ t('footer_about') }}</p><p class="footer-slogan">{{ t('footer_slogan') }}</p></div>
+        <div class="footer-brand"><img src="/logo.png" alt="久友电器" class="footer-logo"><p>{{ t("footer_about") }}</p><p class="footer-slogan">{{ t("footer_slogan") }}</p></div>
         <div class="footer-links"><h4>{{ t('footer_links') }}</h4><router-link to="/about">{{ t('nav_about') }}</router-link><router-link to="/culture">{{ t('nav_culture') }}</router-link><router-link to="/products">{{ t('nav_products') }}</router-link><router-link to="/news">{{ t('nav_news') }}</router-link></div>
         <div class="footer-links"><h4>{{ t('footer_service') }}</h4><router-link to="/downloads">{{ t('nav_downloads') }}</router-link><router-link to="/contact">{{ t('nav_contact') }}</router-link><a href="#">售后服务</a><a href="#">常见问题</a></div>
         <div class="footer-contact"><h4>{{ t('footer_contact') }}</h4><p>{{ t('address') }}</p><p>{{ t('footer_contact_title') }}：{{ t('phone') }}</p><p>📧 {{ t('email') }}</p><p>{{ t('company') }} · 始于2001</p></div>
@@ -130,7 +130,7 @@ a { text-decoration: none; color: inherit; }
 
 .footer { background: #1a1a1a; border-top: 2px solid #c9a84c; padding: 60px 0 0; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; padding-bottom: 40px; }
-.footer-brand h3 { font-size: 1.3rem; color: #c9a84c; margin-bottom: 15px; letter-spacing: 2px; }
+.footer-logo { height: 60px; width: auto; display: block; margin-bottom: 15px; }
 .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.8; }
 .footer-slogan { color: rgba(201,168,76,0.5); font-size: 0.7rem; letter-spacing: 3px; margin-top: 15px; }
 .footer-links h4, .footer-contact h4 { color: #fff; font-size: 0.9rem; margin-bottom: 20px; font-weight: 400; letter-spacing: 2px; }
@@ -153,6 +153,8 @@ a { text-decoration: none; color: inherit; }
   .dropdown-menu { position: static; transform: none; border: none; border-left: 2px solid #c9a84c; margin-left: 18px; padding: 5px 0; }
 }
 </style>
+
+
 
 
 
