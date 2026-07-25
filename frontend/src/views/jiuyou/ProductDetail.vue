@@ -67,7 +67,7 @@ function goDetail(id) { router.push('/product/' + id) }
 .back-btn { padding: 12px 30px; background: none; border: 1px solid #c9a84c; color: #c9a84c; font-size: 0.82rem; cursor: pointer; transition: all 0.3s; font-family: inherit; letter-spacing: 1px; }
 .back-btn:hover { background: #c9a84c; color: #fff; }
 .specs-section { background: #f8f8f6; }
-.specs-table { max-width: 700px; margin: 0 auto; }
+.specs-table { max-width: 1200px; margin: 0 auto; }
 .spec-row { display: flex; justify-content: space-between; padding: 15px 20px; border-bottom: 1px solid #e8e8e3; }
 .spec-label { color: #888; font-size: 0.85rem; }
 .spec-value { color: #1a1a1a; font-size: 0.85rem; }

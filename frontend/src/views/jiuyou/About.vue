@@ -38,7 +38,7 @@ const honors = [
 </template>
 <style scoped>
 .about-page { background: #fff; }
-.page-hero { position: relative; height: 50vh; min-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.page-hero { position: relative; height: 35vh; min-height: 280px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .page-hero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, #d4b85a, #c9a84c, transparent); background-size: 200% 100%; animation: heroGlowBar 3s ease-in-out infinite; }
 .hero-bg { position: absolute; inset: 0; background: url(https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=700&fit=crop) center/cover; }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg,rgba(0,0,0,0.8),rgba(0,0,0,0.4)); z-index: 1; }
@@ -46,13 +46,13 @@ const honors = [
 .breadcrumb { color: rgba(201,168,76,0.6); font-size: 0.78rem; letter-spacing: 2px; }
 .hero-content h1 { font-size: 3rem; color: #fff; font-weight: 300; margin: 15px 0; letter-spacing: 4px; }
 .hero-content p { color: rgba(255,255,255,0.5); font-size: 1.05rem; }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 .section { padding: 80px 0; }
 .section-header { text-align: center; margin-bottom: 50px; }
 .section-tag { color: #c9a84c; font-size: 0.72rem; letter-spacing: 3px; }
 .section-title { font-size: 2rem; font-weight: 300; color: #1a1a1a; margin: 10px 0; letter-spacing: 2px; }
 
-.intro-text { max-width: 900px; margin: 0 auto; }
+.intro-text { max-width: 1200px; margin: 0 auto; }
 .intro-p { color: #555; line-height: 2; font-size: 0.95rem; text-indent: 2em; }
 
 .philosophy-section { background: #f8f8f6; }
@@ -64,12 +64,12 @@ const honors = [
 .phil-card p { color: #888; font-size: 0.85rem; line-height: 1.8; }
 
 .honor-section { background: #fff; }
-.honor-list { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 800px; margin: 0 auto; }
+.honor-list { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; max-width: 1200px; margin: 0 auto; }
 .honor-item { display: flex; align-items: center; gap: 10px; padding: 14px 24px; background: #f8f8f6; color: #555; font-size: 0.88rem; border: 1px solid #e8e8e3; }
 .honor-dot { width: 6px; height: 6px; background: #c9a84c; flex-shrink: 0; }
 
 .resp-section { background: #f8f8f6; }
-.resp-content { max-width: 900px; margin: 0 auto; }
+.resp-content { max-width: 1200px; margin: 0 auto; }
 .resp-content p { color: #555; line-height: 2; font-size: 0.92rem; margin-bottom: 20px; text-indent: 2em; }
 
 @media (max-width:768px) { .phil-grid { grid-template-columns: 1fr; } .honor-list { flex-direction: column; align-items: center; } }

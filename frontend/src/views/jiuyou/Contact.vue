@@ -46,7 +46,7 @@ async function submit() {
 
 <style scoped>
 .contact-page { background: #fff; }
-.page-hero { position: relative; height: 40vh; min-height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.page-hero { position: relative; height: 35vh; min-height: 280px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .page-hero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, #d4b85a, #c9a84c, transparent); background-size: 200% 100%; animation: heroGlowBar 3s ease-in-out infinite; }
 .hero-bg { position: absolute; inset: 0; background: url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=600&fit=crop) center/cover; }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg,rgba(0,0,0,0.8),rgba(0,0,0,0.4)); z-index: 1; }

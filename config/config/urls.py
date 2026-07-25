@@ -1,4 +1,4 @@
-﻿from django.contrib import admin; from django.urls import path, re_path, include
+from django.contrib import admin; from django.urls import path, re_path, include
 from django.views.static import serve
 from django.conf import settings
 def spa(request):
@@ -16,11 +16,8 @@ from django.conf.urls.static import static
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += [re_path(r'^(?P<path>favicon\.ico)$', serve, {'document_root': settings.FRONTEND_DIST_DIR})]
 urlpatterns += [re_path(r'^(?P<path>logo\.png)$', serve, {'document_root': settings.FRONTEND_DIST_DIR})]
-urlpatterns += [re_path(r"^downloads/(?P<path>.*)$", serve, {"document_root": "/opt/jiuyou/frontend/dist/downloads"})]
-urlpatterns += [re_path(r'^carousel/(?P<path>.*)$', serve, {'document_root': settings.FRONTEND_DIST_DIR.parent / 'public' / 'carousel'})]
-urlpatterns += [re_path(r'^products/(?P<path>.*)$', serve, {'document_root': settings.FRONTEND_DIST_DIR / 'products'})]
-urlpatterns += [re_path(r'^assets/(?P<path>.*)$', serve, {'document_root': settings.FRONTEND_DIST_DIR / 'assets'})]
-urlpatterns += [re_path(r'^(?!admin|api|static|assets|products|carousel|favicon|logo).*$', spa)]
-
-
-
+urlpatterns += [re_path(r'^assets/(?P<path>.+)$', serve, {'document_root': settings.FRONTEND_DIST_DIR / 'assets'})]
+urlpatterns += [re_path(r'^products/(?P<path>.+)$', serve, {'document_root': settings.FRONTEND_DIST_DIR / 'products'})]
+urlpatterns += [re_path(r'^downloads/(?P<path>.+)$', serve, {'document_root': settings.FRONTEND_DIST_DIR / 'downloads'})]
+urlpatterns += [re_path(r'^carousel/(?P<path>.+)$', serve, {'document_root': settings.FRONTEND_DIST_DIR.parent / 'public' / 'carousel'})]
+urlpatterns += [re_path(r'^(?!admin|api|static|assets|favicon|logo).*$', spa)]

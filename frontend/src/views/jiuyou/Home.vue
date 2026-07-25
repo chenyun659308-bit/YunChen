@@ -7,13 +7,16 @@ const latestNews = news.slice(0, 3)
 const scrollY = ref(0)
 const currentSlide = ref(0)
 let slideTimer = null
+let touchStartX = 0
+function handleTouchStart(e) { touchStartX = e.touches[0].clientX }
+function handleTouchEnd(e) { const diff = touchStartX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) { if (diff > 0) nextSlide(); else prevSlide() } }
 const slides = ['/carousel/banner1.jpg','/carousel/banner2.jpg','/carousel/banner3.jpg','/carousel/banner4.jpg','/carousel/banner5.jpg']
 onMounted(() => { window.addEventListener('scroll', () => { scrollY.value = window.scrollY }); slideTimer = setInterval(() => { currentSlide.value = (currentSlide.value + 1) % slides.length }, 5000) })
 onUnmounted(() => { if (slideTimer) clearInterval(slideTimer) })
 </script>
 <template>
   <div class="home-page">
-    <section class="hero"><div v-for="(img, i) in slides" :key="i" class="hero-slide" :class="{ active: i === currentSlide }" :style="{ backgroundImage: 'url(' + img + ')' }"></div><div class="hero-overlay"></div><div class="hero-content"><span class="hero-badge">JIUYOU · 始于2001</span><h1 class="hero-title">久友电器<br/><span class="gold">智造品质生活</span></h1><p class="hero-subtitle">专注电风扇与取暖器 · 让每个家庭享受科技带来的舒适与便捷</p><div class="hero-actions"><router-link to="/products" class="btn-primary">探索产品</router-link><router-link to="/about" class="btn-outline">了解久友</router-link></div></div></section>
+    <section class="hero" @touchstart="handleTouchStart" @touchend="handleTouchEnd"><div v-for="(img, i) in slides" :key="i" class="hero-slide" :class="{ active: i === currentSlide }" :style="{ backgroundImage: 'url(' + img + ')' }"></div><div class="hero-overlay"></div><div class="hero-content"><span class="hero-badge">JIUYOU · 始于2001</span><h1 class="hero-title">久友电器<br/><span class="gold">智造品质生活</span></h1><p class="hero-subtitle">专注电风扇与取暖器 · 让每个家庭享受科技带来的舒适与便捷</p><div class="hero-actions"><router-link to="/products" class="btn-primary">探索产品</router-link><router-link to="/about" class="btn-outline">了解久友</router-link></div></div></section>
     <section class="stats"><div class="container"><div class="stats-grid"><div v-for="(s,i) in [{n:'2001',l:'公司成立'},{n:'40+',l:'出口国家'},{n:'10+',l:'国内省市'},{n:'8',l:'国际认证'},{n:'ISO',l:'体系认证'}]" :key="i" class="stat-item"><span class="stat-num">{{ s.n }}</span><span class="stat-label">{{ s.l }}</span></div></div></div></section>
     <section class="about-section"><div class="container"><div class="section-header"><span class="section-tag">关于我们</span><h2 class="section-title">始于2001 · 专注电风扇与取暖器</h2></div><p>浙江久友电器科技有限公司成立于2001年，专注于电风扇和取暖器两大系列产品的研究、开发、生产及销售。</p><p>产品出口欧洲、中东、非洲、南美等40多个国家和地区。电风扇出口量连续几年稳居慈溪市电风扇生产企业前列。</p></div></section>
   </div>
@@ -45,4 +48,5 @@ onUnmounted(() => { if (slideTimer) clearInterval(slideTimer) })
 .about-section .section-tag { display: block; margin-bottom: 15px; }
 .section-tag { color: #c9a84c; font-size: 0.72rem; letter-spacing: 3px; }
 .section-title { font-size: 1.8rem; font-weight: 300; color: #1a1a1a; margin: 10px 0; letter-spacing: 2px; }
+@media(max-width:768px){.hero{height:60vh!important;min-height:400px!important}.hero-slide{background-size:contain!important;background-color:#1a1a1a!important}}
 </style>

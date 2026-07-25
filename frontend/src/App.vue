@@ -8,6 +8,8 @@ const router = useRouter()
 const menuOpen = ref(false)
 const searchQuery = ref('')
 const showDropdown = ref(false)
+const showBackTop = ref(false)
+function scrollToTop() { window.scrollTo({top:0,behavior:"smooth"}) }
 const { t, toggleLang, locale } = useI18n()
 
 const navItems = [
@@ -64,7 +66,8 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
               </div>
             </div>
             <router-link v-else :to="item.path" class="nav-link" :class="{ active: route.path === item.path }" @click="menuOpen = false">{{ t(item.label) }}</router-link>
-          </template>
+          <button v-if="showBackTop" class="back-top" @click="scrollToTop">↑</button>
+</template>
 
           <div class="nav-search">
             <input v-model="searchQuery" @keyup.enter="doSearch" :placeholder="t('search_placeholder')" class="search-input">
@@ -88,6 +91,7 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
       <div class="footer-bottom"><div class="container"><p>{{ t('footer_copyright') }}</p></div></div>
     </footer>
   </div>
+<button v-if="showBackTop" class="back-top" @click="scrollToTop">↑</button>
 </template>
 
 <style>
@@ -152,6 +156,7 @@ a { text-decoration: none; color: inherit; }
   .footer-grid { grid-template-columns: 1fr; gap: 30px; }
   .dropdown-menu { position: static; transform: none; border: none; border-left: 2px solid #c9a84c; margin-left: 18px; padding: 5px 0; }
 }
+.back-top{position:fixed;bottom:40px;right:30px;z-index:999;width:44px;height:44px;border:1px solid rgba(201,168,76,0.3);background:rgba(255,255,255,0.95);color:#c9a84c;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;box-shadow:0 2px 20px rgba(0,0,0,0.08)}.back-top:hover{background:#c9a84c;color:#fff}@media(max-width:768px){.product-grid{justify-items:center!important}.product-card{max-width:320px!important;width:100%!important}.product-img{height:280px!important}.product-img img{object-fit:contain!important;padding:10px!important}.product-info{text-align:center!important}.product-info h3{font-size:0.9rem!important}.detail-btn{font-size:0.78rem!important;padding:8px 0!important}.hero{height:50vh!important}.hero-slide{background-size:contain!important;background-color:#1a1a1a!important}.product-img{height:260px!important}.product-img img{padding:5px!important}.carousel-arrow{width:36px!important;height:36px!important;font-size:1.1rem!important}}
 </style>
 
 
