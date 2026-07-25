@@ -1,10 +1,16 @@
 ﻿from django.contrib import admin; from django.urls import path, re_path, include
-from django.http import HttpResponse
 from django.views.static import serve
 from django.conf import settings
-from config.inline_content import I
-def spa(r):
-    return HttpResponse(I, content_type='text/html; charset=utf-8')
+def spa(request):
+    import os
+    index_path = os.path.join(settings.FRONTEND_DIST_DIR, 'index.html')
+    if os.path.exists(index_path):
+        with open(index_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+    else:
+        content = '<html><body><h1>Frontend not built</h1><p>Run: cd frontend && npm run build</p></body></html>'
+    from django.http import HttpResponse
+    return HttpResponse(content, content_type='text/html; charset=utf-8')
 urlpatterns = [path('admin/',admin.site.urls), path('api/',include('main.urls'))]
 from django.conf.urls.static import static
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
