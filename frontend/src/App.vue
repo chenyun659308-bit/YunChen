@@ -110,7 +110,7 @@ a { text-decoration: none; color: inherit; }
 .navbar { position: fixed; top: 38px; left: 0; right: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #e8e8e3; height: 74px; display: flex; align-items: center; }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 100%; }
 .logo { display: flex; align-items: center; flex-shrink: 0; }
-.logo-img { height: 42px; width: auto; object-fit: contain; }
+.logo-img { height: 50px; width: auto; display: block; }
 
 .nav-links { display: flex; align-items: center; height: 100%; gap: 0; }
 .nav-link { display: inline-flex; align-items: center; padding: 0 22px; color: #666; font-size: 0.88rem; letter-spacing: 1px; white-space: nowrap; height: 100%; border-bottom: 2px solid transparent; transition: all 0.3s; }
@@ -153,5 +153,6 @@ a { text-decoration: none; color: inherit; }
   .dropdown-menu { position: static; transform: none; border: none; border-left: 2px solid #c9a84c; margin-left: 18px; padding: 5px 0; }
 }
 </style>
+
 
 
