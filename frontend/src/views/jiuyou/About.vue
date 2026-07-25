@@ -39,6 +39,7 @@ const honors = [
 <style scoped>
 .about-page { background: #fff; }
 .page-hero { position: relative; height: 50vh; min-height: 350px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.page-hero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, #d4b85a, #c9a84c, transparent); background-size: 200% 100%; animation: heroGlowBar 3s ease-in-out infinite; }
 .hero-bg { position: absolute; inset: 0; background: url(https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=700&fit=crop) center/cover; }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg,rgba(0,0,0,0.8),rgba(0,0,0,0.4)); z-index: 1; }
 .hero-content { position: relative; z-index: 2; text-align: center; }
@@ -72,4 +73,13 @@ const honors = [
 .resp-content p { color: #555; line-height: 2; font-size: 0.92rem; margin-bottom: 20px; text-indent: 2em; }
 
 @media (max-width:768px) { .phil-grid { grid-template-columns: 1fr; } .honor-list { flex-direction: column; align-items: center; } }
+
+@keyframes heroBgShift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes heroGlowBar {
+  0%,100% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+}
 </style>

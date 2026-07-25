@@ -3,7 +3,7 @@
 
 <template>
   <div class="home">
-    <h1>欢迎来到 YunChen</h1>
+    <h1>欢迎来到 浙江久友电器有限公司</h1>
     <p>Vue + Django 全栈应用</p>
   </div>
 </template>

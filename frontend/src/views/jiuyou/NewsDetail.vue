@@ -35,4 +35,13 @@ function getParagraphs() {
 .back-btn { margin-top: 40px; padding: 12px 30px; background: none; border: 1px solid #c9a84c; color: #c9a84c; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; font-family: inherit; letter-spacing: 1px; }
 .back-btn:hover { background: #c9a84c; color: #fff; }
 @media (max-width:768px) { .hero-content h1 { font-size: 1.6rem; } }
+
+@keyframes heroBgShift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes heroGlowBar {
+  0%,100% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+}
 </style>

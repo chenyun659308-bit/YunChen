@@ -23,6 +23,7 @@ const samples = [
 <style scoped>
 .downloads-page { background: #fff; }
 .page-hero { position: relative; height: 35vh; min-height: 280px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.page-hero::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, #d4b85a, #c9a84c, transparent); background-size: 200% 100%; animation: heroGlowBar 3s ease-in-out infinite; }
 .hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=1920&h=600&fit=crop') center/cover; }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.4)); z-index: 1; }
 .hero-content { position: relative; z-index: 2; text-align: center; }
@@ -42,4 +43,13 @@ const samples = [
 .sample-meta { display: block; color: #bbb; font-size: 0.78rem; margin-bottom: 24px; }
 .dl-btn { display: inline-block; padding: 10px 32px; background: transparent; border: 1px solid #c9a84c; color: #c9a84c; text-decoration: none; font-size: 0.8rem; letter-spacing: 2px; transition: all 0.3s; }
 .dl-btn:hover { background: #c9a84c; color: #fff; }
+
+@keyframes heroBgShift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes heroGlowBar {
+  0%,100% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+}
 </style>

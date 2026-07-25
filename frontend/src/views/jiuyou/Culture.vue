@@ -84,4 +84,13 @@
   .spirit-grid.two-col { grid-template-columns: 1fr; }
   .hero-content h1 { font-size: 2.2rem; }
 }
+
+@keyframes heroBgShift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes heroGlowBar {
+  0%,100% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+}
 </style>

@@ -82,4 +82,13 @@ function goDetail(id) { router.push('/product/' + id) }
 .not-found h2 { color: #1a1a1a; margin-bottom: 20px; font-weight: 300; }
 .not-found a { color: #c9a84c; }
 @media (max-width:768px) { .detail-layout { grid-template-columns: 1fr; } .related-grid { grid-template-columns: 1fr 1fr; } .detail-features ul { grid-template-columns: 1fr; } }
+
+@keyframes heroBgShift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes heroGlowBar {
+  0%,100% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+}
 </style>
