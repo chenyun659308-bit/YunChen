@@ -2,31 +2,31 @@
   <div class="culture-page">
     <section class="page-hero"><div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">首页 / 企业文化</span><h1>企业文化</h1><p>以文化凝聚力量，用创新引领未来</p></div></section>
 
-    <section class="section intro-section"><div class="container"><p class="intro-text">企业文化是企业的灵魂，是推动企业发展的不竭动力。久友电器以"包容、创新、高效、共赢"为核心价值观，致力于为全球家庭打造舒适、安全、健康的居家生活体验。</p></div></section>
+    <section class="section intro-section"><div class="container"><p class="intro-text">{{ t("culture_intro") }}</p></div></section>
 
     <section class="section culture-section"><div class="container">
       <div class="culture-grid">
-        <div class="culture-card primary"><div class="cc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/><path d="M16 24l5 5 11-11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="cc-label">使命</div><div class="cc-en">Mission</div><div class="cc-desc">为人类打造舒适居家生活</div></div>
-        <div class="culture-card primary"><div class="cc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/><path d="M24 14v20M14 24h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="cc-label">愿景</div><div class="cc-en">Vision</div><div class="cc-desc">打造两季小家电出口企业带头人</div></div>
+        <div class="culture-card primary"><div class="cc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/><path d="M16 24l5 5 11-11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="cc-label">使命</div><div class="cc-en">Mission</div><div class="cc-desc">{{ t("culture_mission_d") }}</div></div>
+        <div class="culture-card primary"><div class="cc-icon"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" stroke="currentColor" stroke-width="1.5"/><path d="M24 14v20M14 24h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="cc-label">愿景</div><div class="cc-en">Vision</div><div class="cc-desc">{{ t("culture_vision_d") }}</div></div>
       </div>
 
       <div class="culture-divider"><span>核心理念</span></div>
 
-      <div class="value-block"><div class="value-text"><h3 class="value-title">核心价值观</h3><span class="value-en">Core Values</span><p class="value-desc">仰德以求精进，盈利为人谋福。为家电而生、为社会而存、为员工而富、为用户而强</p></div></div>
+      <div class="value-block"><div class="value-text"><h3 class="value-title">核心价值观</h3><span class="value-en">Core Values</span><p class="value-desc">{{ t("culture_core_d") }}</p></div></div>
 
       <div class="culture-divider"><span>企业精神 · 理念 · 宗旨</span></div>
 
       <div class="spirit-grid">
-        <div class="spirit-card"><div class="sc-icon"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h3>企业精神</h3><span class="sc-en">Enterprise Spirit</span><p>塑造团队，培养人才，产品创新，追求品质，爱岗敬业，互信互助，诚信共赢</p></div>
-        <div class="spirit-card"><div class="sc-icon"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h3>企业理念</h3><span class="sc-en">Enterprise Philosophy</span><p>诚心创新，造行业精品，真诚合作，塑品牌形象</p></div>
-        <div class="spirit-card"><div class="sc-icon"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h3>企业宗旨</h3><span class="sc-en">Enterprise Purpose</span><p>用高新技术和设计理念，不断创新，着力打造安全、舒适、健康的产品产业</p></div>
+        <div class="spirit-card"><div class="sc-icon"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h3>企业精神</h3><span class="sc-en">Enterprise Spirit</span><p>{{ t("culture_s1d") }}</p></div>
+        <div class="spirit-card"><div class="sc-icon"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h3>企业理念</h3><span class="sc-en">Enterprise Philosophy</span><p>{{ t("culture_s2d") }}</p></div>
+        <div class="spirit-card"><div class="sc-icon"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h3>企业宗旨</h3><span class="sc-en">Enterprise Purpose</span><p>{{ t("culture_s3d") }}</p></div>
       </div>
 
       <div class="culture-divider"><span>经营 · 产品理念</span></div>
 
       <div class="spirit-grid two-col">
-        <div class="spirit-card"><div class="sc-icon"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h3>经营理念</h3><span class="sc-en">Management Concept</span><p>包容、创新、高效</p></div>
-        <div class="spirit-card"><div class="sc-icon"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h3>产品理念</h3><span class="sc-en">Product Concept</span><p>专业、精细、创新</p></div>
+        <div class="spirit-card"><div class="sc-icon"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h3>经营理念</h3><span class="sc-en">Management Concept</span><p>{{ t("culture_b1d") }}</p></div>
+        <div class="spirit-card"><div class="sc-icon"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="1.2"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h3>产品理念</h3><span class="sc-en">Product Concept</span><p>{{ t("culture_b2d") }}</p></div>
       </div>
     </div></section>
   </div>

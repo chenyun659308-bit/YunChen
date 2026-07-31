@@ -63,6 +63,26 @@ const zh = {
   dl_all: '全部', dl_btn: '下载',
   contact_form_title: '留言咨询', contact_form_desc: '欢迎留下您的需求与建议，久友客服将在24小时内与您联系。',
   contact_submit: '提交留言', contact_success: '留言提交成功！',
+  after_sales: '售后服务',
+  faq: '常见问题',
+  about_intro_p1: '浙江久友电器科技有限公司成立于2001年，前身为宁波市久友塑料制品有限公司和慈溪市久友电器制造厂，是一家专注于电风扇和取暖器两大系列产品的研究、开发、生产及销售的创新企业。',
+  about_intro_p2: '产品通过CCC、GS、CE、EMC、KETI、UL、ETL及ROHS认证，产品出口于欧洲、中东、非洲、南美等40多个国家和地区，以及国内销售至10多个省市自治区。',
+  phil_1t: '产品创新', phil_1d: '始终坚持产品创新，诚信立业的经营原则，着力打造安全、舒适、健康的产品。拥有雄厚的产品开发能力和模具制造技术，产品质量稳定，价格合理，深受国内外客户的好评。',
+  phil_2t: '质量为先', phil_2d: '自2002年获得ISO9001:2000质量管理体系认证以来，全体员工本着"以质量求生存，以创新求发展"的生产方针，齐心协力，实现企业快速、稳定地发展。',
+  phil_3t: '合作共赢', phil_3d: '以包容、创新、高效、共赢的理念赢得了客户一致的满意，增进了彼此之间长远的合作和信任。',
+  resp_p1: '公司一直致力于加强内部管理，制定有高要求的《售后服务规定》，重视加强员工素质教育，充实技术队伍，拥有先进生产设备，开展技术改造，狠抓产品开发，注重知识产权保护，严把产品质量关，历年企业的产值利税稳中有升，顾客满意度不断提高。',
+  resp_p2: '有感于企业的发展得益于党的政策，致富不忘国家，企业自觉增强诚信纳税的道德观念，树立纳税报国的爱国主义精神，争做诚信纳税的时代楷模。同时，努力构建和谐企业，主动承担社会责任，积极参与社会保险和慈善公益事业，照章纳税，规范经营，做好环境保护，加强安全生产，更好地为消费者服务。',
+  culture_intro: '企业文化是企业的灵魂，是推动企业发展的不竭动力。久友电器以"包容、创新、高效、共赢"为核心价值观，致力于为全球家庭打造舒适、安全、健康的居家生活体验。',
+  culture_mission: '使命', culture_mission_d: '为人类打造舒适居家生活',
+  culture_vision: '愿景', culture_vision_d: '打造两季小家电出口企业带头人',
+  culture_core: '核心理念', culture_core_t: '核心价值观', culture_core_d: '仰德以求精进，盈利为人谋福。为家电而生、为社会而存、为员工而富、为用户而强',
+  culture_spirit: '企业精神 · 理念 · 宗旨',
+  culture_s1t: '企业精神', culture_s1d: '塑造团队，培养人才，产品创新，追求品质，爱岗敬业，互信互助，诚信共赢',
+  culture_s2t: '企业理念', culture_s2d: '诚心创新，造行业精品，真诚合作，塑品牌形象',
+  culture_s3t: '企业宗旨', culture_s3d: '用高新技术和设计理念，不断创新，着力打造安全、舒适、健康的产品产业',
+  culture_biz: '经营 · 产品理念',
+  culture_b1t: '经营理念', culture_b1d: '包容、创新、高效',
+  culture_b2t: '产品理念', culture_b2d: '专业、精细、创新',
 }
 
 const en = {
@@ -75,11 +95,11 @@ const en = {
   phone: '13858340134',
   address: 'Shangshe Village, Xinpu Town, Cixi, Zhejiang',
   footer_about: 'Driven by innovation, dedicated to quality living. Bringing smart home comfort to every family.',
-  footer_slogan: 'JIUYOU · Since 1998',
+  footer_slogan: 'JIUYOU · Since 2001',
   footer_links: 'Quick Links', footer_service: 'Support',
   footer_contact: 'Contact Us',
   footer_copyright: '© 2026 JiuYou Electric. All Rights Reserved.',
-  hero_badge: 'JIUYOU · Since 1998',
+  hero_badge: 'JIUYOU · Since 2001',
   hero_title1: 'JiuYou Electric', hero_title2: 'Smart Quality Life',
   hero_desc: '28 years in smart home appliances · Bringing comfort and convenience to every family',
   hero_btn1: 'Explore', hero_btn2: 'About Us',
@@ -127,6 +147,26 @@ const en = {
   dl_all: 'All', dl_btn: 'Download',
   contact_form_title: 'Send a Message', contact_form_desc: 'Leave your needs, we will contact you within 24 hours.',
   contact_submit: 'Submit', contact_success: 'Message sent successfully!',
+  after_sales: 'After-Sales Service',
+  faq: 'FAQ',
+  about_intro_p1: 'Zhejiang JiuYou Electric Technology Co., Ltd. was founded in 2001, focusing on R&D, production and sales of electric fans and heaters.',
+  about_intro_p2: 'Products certified by CCC, GS, CE, EMC, KETI, UL, ETL and ROHS, exported to 40+ countries worldwide.',
+  phil_1t: 'Innovation', phil_1d: 'Committed to product innovation,诚信 entrepreneurship, creating safe, comfortable and healthy products with strong R&D capabilities.',
+  phil_2t: 'Quality First', phil_2d: 'ISO9001:2000 certified since 2002,全体员工 dedicated to survival through quality and development through innovation.',
+  phil_3t: 'Win-Win', phil_3d: 'With inclusive, innovative, efficient and win-win philosophy, we have earned customer satisfaction and long-term trust.',
+  resp_p1: 'The company is committed to strengthening internal management, with strict after-sales service regulations, quality education, advanced equipment and continuous innovation.',
+  resp_p2: 'Grateful for the Party\'s policies, the company actively fulfills social responsibilities, participates in social insurance and charitable causes, and strives for sustainable development.',
+  culture_intro: 'Corporate culture is the soul of an enterprise. JiuYou Electric embraces inclusion, innovation, efficiency and win-win as core values.',
+  culture_mission: 'Mission', culture_mission_d: 'Creating comfortable home living for humanity',
+  culture_vision: 'Vision', culture_vision_d: 'Leading two-season small appliance exporter',
+  culture_core: 'Core Concepts', culture_core_t: 'Core Values', culture_core_d: 'Virtue drives excellence, profit benefits all. For home appliances, for society, for employees, for users.',
+  culture_spirit: 'Enterprise Spirit & Philosophy',
+  culture_s1t: 'Enterprise Spirit', culture_s1d: 'Build teams, nurture talent, innovate products, pursue quality, be dedicated and trustworthy.',
+  culture_s2t: 'Enterprise Philosophy', culture_s2d: 'Innovate with sincerity, create excellence, cooperate sincerely, build brand image.',
+  culture_s3t: 'Enterprise Purpose', culture_s3d: 'Use high-tech and design concepts to create safe, comfortable and healthy products.',
+  culture_biz: 'Management & Product Concepts',
+  culture_b1t: 'Management Concept', culture_b1d: 'Inclusive, Innovative, Efficient',
+  culture_b2t: 'Product Concept', culture_b2d: 'Professional, Meticulous, Innovative',
 }
 
 export function useI18n() {
@@ -138,3 +178,4 @@ export function useI18n() {
   const toggleLang = () => { locale.value = locale.value === 'zh' ? 'en' : 'zh' }
   return { locale, t, toggleLang, l }
 }
+

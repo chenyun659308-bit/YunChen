@@ -19,9 +19,9 @@ const honors = [
 
     <!-- Philosophy -->
     <section class="section philosophy-section"><div class="container"><div class="section-header"><span class="section-tag">PHILOSOPHY</span><h2 class="section-title">{{ t('about_phil_title') }}</h2></div>
-      <div class="phil-grid"><div class="phil-card"><span class="phil-num">01</span><h3>产品创新</h3><p>始终坚持产品创新，诚信立业的经营原则，着力打造安全、舒适、健康的产品。拥有雄厚的产品开发能力和模具制造技术，产品质量稳定，价格合理，深受国内外客户的好评。</p></div>
-      <div class="phil-card"><span class="phil-num">02</span><h3>质量为先</h3><p>自2002年获得ISO9001:2000质量管理体系认证以来，全体员工本着"以质量求生存，以创新求发展"的生产方针，齐心协力，实现企业快速、稳定地发展。</p></div>
-      <div class="phil-card"><span class="phil-num">03</span><h3>合作共赢</h3><p>以"包容、创新、高效、共赢"的{{ t('about_phil_title') }}赢得了客户一致的满意，增进了彼此之间长远的合作和信任。</p></div></div>
+      <div class="phil-grid"><div class="phil-card"><span class="phil-num">01</span><h3>产品创新</h3><p>{{ t("phil_1d") }}</p></div>
+      <div class="phil-card"><span class="phil-num">02</span><h3>质量为先</h3><p>{{ t("phil_2d") }}</p></div>
+      <div class="phil-card"><span class="phil-num">03</span><h3>合作共赢</h3><p>{{ t("phil_3d") }}{{ t('about_phil_title') }}</p></div></div>
     </div></section>
 
     <!-- Honors -->

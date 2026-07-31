@@ -1,5 +1,5 @@
 ﻿<script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from './i18n.js'
 
@@ -9,7 +9,9 @@ const menuOpen = ref(false)
 const searchQuery = ref('')
 const showDropdown = ref(false)
 const showBackTop = ref(false)
-function scrollToTop() { window.scrollTo({top:0,behavior:"smooth"}) }
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) }
+onMounted(() => { window.addEventListener('scroll', () => { showBackTop.value = window.scrollY > 400 }) })
+
 const { t, toggleLang, locale } = useI18n()
 
 const navItems = [
@@ -66,7 +68,12 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
               </div>
             </div>
             <router-link v-else :to="item.path" class="nav-link" :class="{ active: route.path === item.path }" @click="menuOpen = false">{{ t(item.label) }}</router-link>
-          <button v-if="showBackTop" class="back-top" @click="scrollToTop">↑</button>
+          
+<!-- Back to top button -->
+<transition name="fade">
+  <button v-if="showBackTop" class="back-top" @click="scrollToTop">↑</button>
+</transition>
+
 </template>
 
           <div class="nav-search">
@@ -85,13 +92,18 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
       <div class="container footer-grid">
         <div class="footer-brand"><img src="/logo.png" alt="久友电器" class="footer-logo"><p>{{ t("footer_about") }}</p><p class="footer-slogan">{{ t("footer_slogan") }}</p></div>
         <div class="footer-links"><h4>{{ t('footer_links') }}</h4><router-link to="/about">{{ t('nav_about') }}</router-link><router-link to="/culture">{{ t('nav_culture') }}</router-link><router-link to="/products">{{ t('nav_products') }}</router-link><router-link to="/news">{{ t('nav_news') }}</router-link></div>
-        <div class="footer-links"><h4>{{ t('footer_service') }}</h4><router-link to="/downloads">{{ t('nav_downloads') }}</router-link><router-link to="/contact">{{ t('nav_contact') }}</router-link><a href="#">售后服务</a><a href="#">常见问题</a></div>
-        <div class="footer-contact"><h4>{{ t('footer_contact') }}</h4><p>{{ t('address') }}</p><p>{{ t('footer_contact_title') }}：{{ t('phone') }}</p><p>📧 {{ t('email') }}</p><p>{{ t('company') }} · 始于2001</p></div>
+        <div class="footer-links"><h4>{{ t('footer_service') }}</h4><router-link to="/downloads">{{ t('nav_downloads') }}</router-link><router-link to="/contact">{{ t('nav_contact') }}</router-link><a href="#">{{ t("after_sales") }}</a><a href="#">{{ t("faq") }}</a></div>
+        <div class="footer-contact"><h4>{{ t('footer_contact') }}</h4><p>{{ t('address') }}</p><p>{{ t('footer_contact_title') }}：{{ t('phone') }}</p><p>📧 {{ t('email') }}</p><p>{{ t('company') }} · {{ t("footer_slogan") }}</p></div>
       </div>
       <div class="footer-bottom"><div class="container"><p>{{ t('footer_copyright') }}</p></div></div>
     </footer>
   </div>
-<button v-if="showBackTop" class="back-top" @click="scrollToTop">↑</button>
+
+<!-- Back to top button -->
+<transition name="fade">
+  <button v-if="showBackTop" class="back-top" @click="scrollToTop">↑</button>
+</transition>
+
 </template>
 
 <style>
@@ -156,7 +168,84 @@ a { text-decoration: none; color: inherit; }
   .footer-grid { grid-template-columns: 1fr; gap: 30px; }
   .dropdown-menu { position: static; transform: none; border: none; border-left: 2px solid #c9a84c; margin-left: 18px; padding: 5px 0; }
 }
-.back-top{position:fixed;bottom:40px;right:30px;z-index:999;width:44px;height:44px;border:1px solid rgba(201,168,76,0.3);background:rgba(255,255,255,0.95);color:#c9a84c;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s;box-shadow:0 2px 20px rgba(0,0,0,0.08)}.back-top:hover{background:#c9a84c;color:#fff}@media(max-width:768px){.product-grid{justify-items:center!important}.product-card{max-width:320px!important;width:100%!important}.product-img{height:280px!important}.product-img img{object-fit:contain!important;padding:10px!important}.product-info{text-align:center!important}.product-info h3{font-size:0.9rem!important}.detail-btn{font-size:0.78rem!important;padding:8px 0!important}.hero{height:50vh!important}.hero-slide{background-size:contain!important;background-color:#1a1a1a!important}.product-img{height:260px!important}.product-img img{padding:5px!important}.carousel-arrow{width:36px!important;height:36px!important;font-size:1.1rem!important}}
+
+.back-top { position: fixed; bottom: 40px; right: 30px; z-index: 999; width: 44px; height: 44px; border: 1px solid rgba(201,168,76,0.3); background: rgba(255,255,255,0.95); color: #c9a84c; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; box-shadow: 0 2px 20px rgba(0,0,0,0.08); font-family: inherit; line-height: 1; }
+.back-top:hover { background: #c9a84c; color: #fff; border-color: #c9a84c; transform: translateY(-3px); box-shadow: 0 4px 25px rgba(201,168,76,0.3); }
+.fade-enter-active, .fade-leave-active { transition: opacity 0.3s; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+@media (max-width: 768px) {
+  .top-bar-info, .top-bar-text { font-size: 0.65rem !important; }
+  .page-hero { height: 30vh !important; min-height: 200px !important; padding: 50px 0 40px !important; }
+  .page-hero h1 { font-size: 1.8rem !important; letter-spacing: 3px !important; }
+  .page-hero p { font-size: 0.8rem !important; }
+  .container { padding: 0 15px !important; }
+  .section { padding: 40px 0 !important; }
+  .sample-grid, .sample-card { grid-template-columns: 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr !important; gap: 25px !important; }
+  .sample-card { padding: 25px 20px !important; }
+  .hero-title { font-size: 2rem !important; }
+  .hero-subtitle { font-size: 0.85rem !important; }
+  .stats-grid { grid-template-columns: repeat(2,1fr) !important; gap: 15px !important; }
+  .phil-grid { grid-template-columns: 1fr !important; }
+  .spirit-grid { grid-template-columns: 1fr !important; }
+  .product-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .detail-layout { flex-direction: column !important; }
+  .sidebar { display: none !important; }
+  .main-layout { flex-direction: column !important; }
+  .back-top { bottom: 20px; right: 15px; width: 38px; height: 38px; font-size: 1rem; }
+}
+@media (max-width: 480px) {
+  .product-grid { grid-template-columns: 1fr !important; }
+  .hero-title { font-size: 1.5rem !important; }
+  .page-hero h1 { font-size: 1.4rem !important; }
+  .breadcrumb { font-size: 0.65rem !important; }
+  .carousel-btn { width: 36px !important; height: 36px !important; font-size: 1.4rem !important; }
+}
+
+
+@media (max-width: 768px) {
+  .top-bar { height: 32px !important; }
+  .top-bar-info, .top-bar-text { font-size: 0.6rem !important; }
+  .navbar { height: 56px !important; top: 32px !important; }
+  .logo-img { height: 32px !important; }
+  .nav-link { font-size: 0.78rem !important; letter-spacing: 1px !important; }
+  .main-content { padding-top: 88px !important; }
+  .page-hero { height: 25vh !important; min-height: 160px !important; }
+  .page-hero h1 { font-size: 1.4rem !important; letter-spacing: 2px !important; }
+  .page-hero p { font-size: 0.72rem !important; }
+  .section { padding: 25px 0 !important; }
+  .container { padding: 0 12px !important; }
+  .hero-title { font-size: 1.6rem !important; }
+  .hero-subtitle { font-size: 0.75rem !important; }
+  .product-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .product-img { height: 180px !important; }
+  .stats-grid { grid-template-columns: repeat(2,1fr) !important; gap: 10px !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .phil-grid, .spirit-grid { grid-template-columns: 1fr !important; }
+  .sample-grid { grid-template-columns: 1fr !important; }
+  .back-top { bottom: 15px !important; right: 12px !important; width: 34px !important; height: 34px !important; }
+}
+
+@media (max-width: 768px) {
+  .hero { height: 60vh !important; min-height: 400px !important; }
+  .hero-slide { background-size: cover !important; background-position: center !important; }
+  .hero-overlay { background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2)) !important; }
+  .hero-title { font-size: 2rem !important; line-height: 1.3 !important; }
+  .hero-subtitle { font-size: 0.85rem !important; margin-bottom: 30px !important; }
+  .hero-badge { margin-bottom: 20px !important; }
+  .page-hero { height: 30vh !important; min-height: 200px !important; }
+  .page-hero h1 { font-size: 1.6rem !important; }
+  .product-img { height: 240px !important; }
+  .product-img img { object-fit: contain !important; padding: 15px !important; }
+  .product-grid { gap: 15px !important; }
+  .product-card { border-radius: 8px !important; overflow: hidden !important; }
+  .detail-layout { flex-direction: column !important; }
+  .detail-image { width: 100% !important; }
+  .detail-image img { width: 100% !important; height: auto !important; max-height: 350px !important; object-fit: contain !important; }
+  .hero-bg img { object-fit: cover !important; }
+  .carousel-btn { width: 36px !important; height: 36px !important; font-size: 1.4rem !important; opacity: 0.8 !important; }
+}
 </style>
 
 
