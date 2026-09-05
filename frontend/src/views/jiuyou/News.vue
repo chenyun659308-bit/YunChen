@@ -1,18 +1,31 @@
 <script setup>
 import { useRouter } from 'vue-router'
-import { news } from '../../data/news.js'
+import { news, news_en } from '../../data/news.js'
+import { useI18n } from '../../i18n.js'
 
 const router = useRouter()
+const { locale } = useI18n()
+
+function titleOf(item) {
+  return locale.value === 'en' ? (news_en[item.id]?.title_en || item.title) : item.title
+}
+function summaryOf(item) {
+  return locale.value === 'en' ? (news_en[item.id]?.summary_en || item.summary) : item.summary
+}
+function crumb() {
+  return locale.value === 'en' ? 'Home / News' : '\u9996\u9875 / \u65b0\u95fb\u4e2d\u5fc3'
+}
 function goDetail(id) { router.push('/news/' + id) }
 </script>
 <template>
   <div class="news-page">
-    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">首页 / {{ t('news_hero') }}</span><h1>{{ t('news_hero') }}</h1><p>{{ t('news_hero_desc') }}</p></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">{{ crumb() }}</span><h1>{{ t('news_hero') }}</h1><p>{{ t('news_hero_desc') }}</p></div></section>
     <section class="section"><div class="container">
-      <div class="news-list"><div v-for="item in news" :key="item.id" class="news-item"><div class="news-info"><span class="news-date">{{ item.date }}</span><h3>{{ l(item, "title") }}</h3><p>{{ l(item, "summary").slice(0, 120) + '...' }}</p><button class="detail-btn" @click="goDetail(item.id)">{{ t('news_btn') }}</button></div></div></div>
+      <div class="news-list"><div v-for="item in news" :key="item.id" class="news-item"><div class="news-info"><span class="news-date">{{ item.date }}</span><h3>{{ titleOf(item) }}</h3><p>{{ summaryOf(item).slice(0, 120) + '...' }}</p><button class="detail-btn" @click="goDetail(item.id)">{{ t('news_btn') }}</button></div></div></div>
     </div></section>
   </div>
 </template>
+
 <style scoped>
 .page-hero { position: relative; background: #fafaf8; padding: 90px 0 80px; text-align: center; overflow: hidden; }
 .page-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, transparent); }

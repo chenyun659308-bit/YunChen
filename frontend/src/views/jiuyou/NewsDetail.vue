@@ -1,23 +1,39 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router'
-import { news } from '../../data/news.js'
+import { news, news_en } from '../../data/news.js'
+import { useI18n } from '../../i18n.js'
 
 const route = useRoute()
 const router = useRouter()
+const { locale } = useI18n()
 const id = Number(route.params.id)
 const article = news.find(n => n.id === id)
 
-function getParagraphs() {
+function titleOf() {
+  return locale.value === 'en' ? (news_en[id]?.title_en || article?.title) : article?.title
+}
+function paragraphs() {
   if (!article) return []
-  return (article.content || '').split('\n\n')
+  if (locale.value === 'en') return (news_en[id]?.content_en || '').split('\\n\\n')
+  return (article.content || '').split('\\n\\n')
+}
+function crumb() {
+  return locale.value === 'en' ? 'Home / News' : '\u9996\u9875 / \u65b0\u95fb\u4e2d\u5fc3'
+}
+function emptyText() {
+  return locale.value === 'en' ? 'No content' : '\u6682\u65e0\u5185\u5bb9'
+}
+function backText() {
+  return locale.value === 'en' ? 'Back to News' : '\u2190 \u8fd4\u56de\u65b0\u95fb\u5217\u8868'
 }
 </script>
 <template>
   <div class="detail-page" v-if="article">
-    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">首页 / 新闻中心</span><h1>{{ article.title }}</h1><span class="hero-date">{{ article.date }}</span></div></section>
-    <section class="section"><div class="container"><h2 style="text-align:center;color:#c9a84c;margin-bottom:30px;">{{ article.title }}</h2><div class="article-content"><p v-for="(p, i) in getParagraphs()" :key="i" class="article-p">{{ p }}</p></div><div style="text-align:center;margin-top:40px;" v-if="!getParagraphs().length"><p style="color:#999;">暂无内容</p></div><button class="back-btn" @click="router.push('/news')">← 返回新闻列表</button></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">{{ crumb() }}</span><h1>{{ titleOf() }}</h1><span class="hero-date">{{ article.date }}</span></div></section>
+    <section class="section"><div class="container"><h2 style="text-align:center;color:#c9a84c;margin-bottom:30px;">{{ titleOf() }}</h2><div class="article-content"><p v-for="(p, i) in paragraphs()" :key="i" class="article-p">{{ p }}</p></div><div style="text-align:center;margin-top:40px;" v-if="!paragraphs().length"><p style="color:#999;">{{ emptyText() }}</p></div><button class="back-btn" @click="router.push('/news')">{{ backText() }}</button></div></section>
   </div>
 </template>
+
 <style scoped>
 .page-hero { position: relative; background: #fafaf8; padding: 90px 0 80px; text-align: center; overflow: hidden; }
 .page-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, transparent, #c9a84c, transparent); }
