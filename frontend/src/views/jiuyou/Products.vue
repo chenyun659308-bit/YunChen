@@ -1,5 +1,5 @@
 ﻿<script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { products as staticProducts, categories } from '../../data/products.js'
 import { useI18n } from '../../i18n.js'
@@ -12,6 +12,15 @@ const activeCat = ref(route.query.cat || '全部产品')
 const currentPage = ref(1)
 const perPage = 8
 const products = ref(staticProducts)
+
+watch(() => route.query.cat, (cat) => {
+  activeCat.value = cat || '全部产品'
+  currentPage.value = 1
+})
+watch(() => route.query.q, (q) => {
+  searchQ.value = q || ''
+  currentPage.value = 1
+})
 
 function productImage(p) {
   return p.image_url || p.image || ''

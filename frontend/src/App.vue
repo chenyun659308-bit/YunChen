@@ -68,13 +68,7 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
               </div>
             </div>
             <router-link v-else :to="item.path" class="nav-link" :class="{ active: route.path === item.path }" @click="menuOpen = false">{{ t(item.label) }}</router-link>
-          
-<!-- Back to top button -->
-<transition name="fade">
-  <button v-if="showBackTop" class="back-top" @click="scrollToTop">↑</button>
-</transition>
-
-</template>
+          </template>
 
           <div class="nav-search">
             <input v-model="searchQuery" @keyup.enter="doSearch" :placeholder="t('search_placeholder')" class="search-input">
