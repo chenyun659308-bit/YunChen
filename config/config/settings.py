@@ -168,6 +168,10 @@ SIMPLEUI_ANALYSIS = False
 SIMPLEUI_CONFIG = {
     'system_keep': False,
     'menus': [{
+        'name': '产品管理',
+        'icon': 'fa-regular fa-box-open',
+        'url': '/admin/main/product/',
+    }, {
         'name': '联系表单',
         'icon': 'fa-regular fa-message',
         'url': '/admin/main/contract/',

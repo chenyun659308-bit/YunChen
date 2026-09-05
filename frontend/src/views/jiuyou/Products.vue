@@ -1,7 +1,7 @@
 ﻿<script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { products, categories } from '../../data/products.js'
+import { products as staticProducts, categories } from '../../data/products.js'
 import { useI18n } from '../../i18n.js'
 
 const route = useRoute()
@@ -11,13 +11,30 @@ const searchQ = ref(route.query.q || '')
 const activeCat = ref(route.query.cat || '全部产品')
 const currentPage = ref(1)
 const perPage = 8
+const products = ref(staticProducts)
+
+function productImage(p) {
+  return p.image_url || p.image || ''
+}
+
+async function loadProducts() {
+  try {
+    const res = await fetch('/api/products/')
+    if (!res.ok) return
+    const data = await res.json()
+    if (Array.isArray(data)) products.value = data
+  } catch (e) {
+    /* keep static fallback when the API is unavailable */
+  }
+}
+onMounted(loadProducts)
 
 const filtered = computed(() => {
-  let result = products
+  let result = products.value
   if (activeCat.value !== '全部产品') result = result.filter(p => p.category === activeCat.value)
   if (searchQ.value.trim()) {
     const q = searchQ.value.trim().toLowerCase()
-    result = result.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.category.includes(q))
+    result = result.filter(p => [p.name, p.name_en, p.desc, p.desc_en, p.category].some(v => (v || '').toLowerCase().includes(q)))
   }
   return result
 })
@@ -26,7 +43,7 @@ const paged = computed(() => filtered.value.slice((currentPage.value - 1) * perP
 const expandedCats = ref({})
 const catProducts = computed(() => {
   const map = {}
-  products.filter(p => p.category).forEach(p => { if (!map[p.category]) map[p.category] = []; map[p.category].push(p) })
+  products.value.filter(p => p.category).forEach(p => { if (!map[p.category]) map[p.category] = []; map[p.category].push(p) })
   return Object.entries(map)
 })
 const catEnMap = {
@@ -45,6 +62,7 @@ function toggleCat(cat) {
 }
 
 function setCat(cat) { activeCat.value = cat; currentPage.value = 1; router.replace({ query: { cat: cat !== '全部产品' ? cat : undefined } }) }
+function onCatChange(e) { setCat(e.target.value) }
 function goDetail(id) { router.push('/product/' + id) }
 function prevPage() { if (currentPage.value > 1) currentPage.value-- }
 function nextPage() { if (currentPage.value < totalPages.value) currentPage.value++ }
@@ -69,8 +87,9 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
       <!-- Right content -->
       <main class="main-content">
         <div class="toolbar"><div class="search-box"><input v-model="searchQ" :placeholder="t('pro_search')" class="search-input"><button @click="currentPage=1" class="search-btn">{{ t('search_btn') }}</button></div><span class="result-count">{{ locale === 'en' ? '' : '共 ' }}{{ filtered.length }} {{ t('pro_count') }}</span></div>
+        <div class="mobile-cat"><select id="mobile-cat-select" :aria-label="t('pro_catalog')" :value="activeCat" @change="onCatChange"><option v-for="cat in categories" :key="cat" :value="cat">{{ displayCat(cat) }}</option></select></div>
         <div v-if="paged.length === 0" class="empty-state"><p>{{ t('pro_empty') }}</p></div>
-        <div v-else class="product-grid"><div v-for="p in paged" :key="p.id" class="product-card"><div class="product-img"><img :src="p.image" :alt="p.name"></div><div class="product-info"><h3>{{ l(p, "name") }}</h3><button class="detail-btn" @click="goDetail(p.id)">{{ t('pro_detail') }}</button></div></div></div>
+        <div v-else class="product-grid"><div v-for="p in paged" :key="p.id" class="product-card"><div class="product-img"><img :src="productImage(p)" :alt="p.name"></div><div class="product-info"><h3>{{ l(p, "name") }}</h3><button class="detail-btn" @click="goDetail(p.id)">{{ t('pro_detail') }}</button></div></div></div>
         <!-- Pagination -->
         <div class="pagination" v-if="totalPages > 1"><button class="page-btn" :disabled="currentPage===1" @click="prevPage">{{ t('pro_prev') }}</button><button v-for="p in totalPages" :key="p" :class="['page-btn', { active: p === currentPage }]" @click="currentPage = p">{{ p }}</button><button class="page-btn" :disabled="currentPage===totalPages" @click="nextPage">{{ t('pro_next') }}</button></div>
       </main>
@@ -89,6 +108,7 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
 
 /* Sidebar */
 .sidebar { width: 240px; flex-shrink: 0; position: sticky; top: 120px; }
+.mobile-cat { display: none; }
 .sidebar-title { font-size: 1rem; font-weight: 400; color: #1a1a1a; margin-bottom: 25px; padding-bottom: 12px; border-bottom: 2px solid #c9a84c; letter-spacing: 2px; }
 .sidebar-group { margin-bottom: 20px; }
 .sidebar-cat { display: flex; align-items: center; justify-content: space-between; font-size: 0.88rem; color: #c9a84c; cursor: pointer; font-weight: 400; margin-bottom: 8px; padding: 6px 10px; background: #f8f8f6; transition: all 0.2s; letter-spacing: 1px; }
@@ -136,11 +156,15 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
 
 @media (max-width: 768px) {
   .main-layout { flex-direction: column; }
-  .sidebar { width: 100%; position: static; margin-bottom: 20px; }
+  .sidebar { display: none; }
+  .mobile-cat { display: block; width: 100%; margin: 0 0 22px; }
+  .mobile-cat select { display: block; width: 100%; padding: 12px 14px; border: 1px solid #d8d8d2; border-radius: 0; background: #fff; color: #1a1a1a; font-size: 0.9rem; font-family: inherit; outline: none; }
   .product-grid { grid-template-columns: 1fr; }
-  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar { flex-direction: column; align-items: stretch; gap: 10px; margin-bottom: 16px; padding-bottom: 14px; }
   .search-box { width: 100%; }
-  .search-input { width: 100%; }
+  .search-input { flex: 1; min-width: 0; width: auto; }
+  .search-btn { flex-shrink: 0; }
+  .result-count { align-self: flex-start; }
 }
 
 .page-hero { position: relative; padding: 0; text-align: center; overflow: hidden; height: 40vh; min-height: 320px; display: flex; align-items: center; justify-content: center; }

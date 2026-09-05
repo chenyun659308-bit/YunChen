@@ -1,15 +1,47 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { products } from '../../data/products.js'
+import { products as staticProducts } from '../../data/products.js'
 import { useI18n } from '../../i18n.js'
 
 const route = useRoute()
 const router = useRouter()
 const { locale } = useI18n()
-const id = Number(route.params.id)
-const product = computed(() => products.find(p => p.id === id))
-const related = computed(() => products.filter(p => p.category === product.value?.category && p.id !== id).slice(0, 4))
+const id = computed(() => Number(route.params.id))
+const product = ref(null)
+const related = ref([])
+const loaded = ref(false)
+
+function imageUrl(p, from = '', to = '') {
+  const src = p.image_url || p.image || ''
+  if (from && to && typeof src === 'string') return src.replace(from, to)
+  return src
+}
+
+async function loadProduct() {
+  const targetId = id.value
+  loaded.value = false
+  let list = []
+  try {
+    const res = await fetch('/api/products/')
+    if (res.ok) {
+      const data = await res.json()
+      if (Array.isArray(data)) list = data
+    }
+  } catch (e) {
+    /* fall back to static products when API is unavailable */
+  }
+  if (!list.length) list = staticProducts
+  const found = list.find(p => Number(p.id) === targetId) || null
+  product.value = found
+  related.value = found
+    ? list.filter(p => p.category === found.category && Number(p.id) !== targetId).slice(0, 4)
+    : []
+  loaded.value = true
+}
+onMounted(loadProduct)
+watch(id, loadProduct)
+
 function goDetail(id) { router.push('/product/' + id) }
 
 const catEnMap = {
@@ -103,19 +135,35 @@ const uiCopy = computed(() => locale.value === 'en' ? {
 function displayCat(cat) { return locale.value === 'en' ? (catEnMap[cat] || cat) : cat }
 function displaySpec(s) { return locale.value === 'en' ? (specMap[s] || s) : s }
 function displayDesc(d) { return locale.value === 'en' ? (descMap[d] || d) : d }
+function descText(p) {
+  const raw = locale.value === 'en' ? (p.desc_en || p.desc) : p.desc
+  return locale.value === 'en' ? (descMap[raw] || raw) : raw
+}
+function itemName(p) {
+  return locale.value === 'en' ? (p.name_en || p.name) : p.name
+}
+const specList = computed(() => {
+  const p = product.value
+  if (!p) return []
+  if (locale.value === 'en') {
+    if (Array.isArray(p.specs_en) && p.specs_en.length) return p.specs_en
+    return (p.specs || []).map(displaySpec)
+  }
+  return p.specs || []
+})
 </script>
 <template>
   <div class="detail-page" v-if="product">
-    <section class="hero-section"><div class="hero-bg"><img :src="product.image.replace('w=600&h=400','w=1200&h=700')" :alt="product.name"></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">{{ uiCopy.crumbHome }}{{ product.name }}</span><h1>{{ product.name }}</h1><span class="hero-cat">{{ displayCat(product.category) }}</span></div></section>
+    <section class="hero-section"><div class="hero-bg"><img :src="imageUrl(product, 'w=600&h=400', 'w=1200&h=700')" :alt="itemName(product)"></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">{{ uiCopy.crumbHome }}{{ itemName(product) }}</span><h1>{{ itemName(product) }}</h1><span class="hero-cat">{{ displayCat(product.category) }}</span></div></section>
 
     <section class="section"><div class="container">
       <div class="detail-layout">
-        <div class="detail-image"><img :src="product.image.replace('w=600&h=400','w=800&h=600')" :alt="product.name"></div>
+        <div class="detail-image"><img :src="imageUrl(product, 'w=600&h=400', 'w=800&h=600')" :alt="itemName(product)"></div>
         <div class="detail-info">
-          <h2>{{ product.name }}</h2>
+          <h2>{{ itemName(product) }}</h2>
           <span class="detail-cat">{{ displayCat(product.category) }}</span>
-          <p class="detail-desc" v-if="product.category !== '冷暖净风器'">{{ displayDesc(product.desc) }}</p>
-          <div class="detail-features" v-if="product.category !== '冷暖净风器'"><h3>{{ uiCopy.features }}</h3><ul><li v-for="s in product.specs" :key="s">{{ displaySpec(s) }}</li></ul></div>
+          <p class="detail-desc" v-if="product.category !== '冷暖净风器'">{{ descText(product) }}</p>
+          <div class="detail-features" v-if="product.category !== '冷暖净风器'"><h3>{{ uiCopy.features }}</h3><ul><li v-for="s in specList" :key="s">{{ s }}</li></ul></div>
           <div class="detail-meta"><div><h4>{{ uiCopy.model }}</h4><p>{{ product.name.split(' ')[0] }}</p></div><div><h4>{{ uiCopy.series }}</h4><p>{{ displayCat(product.category) }}</p></div><div><h4>{{ uiCopy.status }}</h4><p>{{ uiCopy.onSale }}</p></div><div><h4>{{ uiCopy.warrantyLabel }}</h4><p>{{ uiCopy.warranty }}</p></div></div>
           <button class="back-btn" @click="router.push('/products')">{{ uiCopy.back }}</button>
         </div>
@@ -123,14 +171,14 @@ function displayDesc(d) { return locale.value === 'en' ? (descMap[d] || d) : d }
     </div></section>
 
     <section class="section specs-section" v-if="product.category !== '冷暖净风器'"><div class="container"><div class="section-header"><span class="section-tag">SPECIFICATIONS</span><h2 class="section-title">{{ uiCopy.specs }}</h2></div>
-      <div class="specs-table"><div v-for="(s,i) in product.specs" :key="i" class="spec-row"><span class="spec-label">{{ uiCopy.specParam }}{{ i+1 }}</span><span class="spec-value">{{ displaySpec(s) }}</span></div></div>
+      <div class="specs-table"><div v-for="(s,i) in specList" :key="i" class="spec-row"><span class="spec-label">{{ uiCopy.specParam }}{{ i+1 }}</span><span class="spec-value">{{ s }}</span></div></div>
     </div></section>
 
     <section class="section related-section" v-if="related.length"><div class="container"><div class="section-header"><span class="section-tag">RELATED</span><h2 class="section-title">{{ uiCopy.related }}</h2></div>
-      <div class="related-grid"><div v-for="p in related" :key="p.id" class="related-card" @click="goDetail(p.id)"><img :src="p.image" :alt="p.name"><h3>{{ p.name }}</h3></div></div>
+      <div class="related-grid"><div v-for="p in related" :key="p.id" class="related-card" @click="goDetail(p.id)"><img :src="imageUrl(p)" :alt="itemName(p)"><h3>{{ itemName(p) }}</h3></div></div>
     </div></section>
   </div>
-  <div class="not-found" v-else><h2>{{ uiCopy.notFound }}</h2><router-link to="/products">{{ uiCopy.backTo }}</router-link></div>
+  <div class="not-found" v-else-if="loaded"><h2>{{ uiCopy.notFound }}</h2><router-link to="/products">{{ uiCopy.backTo }}</router-link></div>
 </template>
 
 <style scoped>
