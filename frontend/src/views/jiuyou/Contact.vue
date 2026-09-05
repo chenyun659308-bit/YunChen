@@ -34,7 +34,7 @@ async function submit() {
         </div>
         <div class="contact-sidebar">
           <h2>联系方式</h2>
-          <div class="info-card"><div class="info-item"><span class="info-icon">📍</span><div><h3>公司地址</h3><p>广东省佛山市顺德区北滘镇久友大道1号</p></div></div></div>
+          <div class="info-card"><div class="info-item"><span class="info-icon">📍</span><div><h3>公司地址</h3><p>浙江省慈溪市新浦镇上舍村</p></div></div></div>
           <div class="info-card"><div class="info-item"><span class="info-icon">📞</span><div><h3>服务热线</h3><p>400-888-1998</p></div></div></div>
           <div class="info-card"><div class="info-item"><span class="info-icon">✉️</span><div><h3>电子邮箱</h3><p>service@jiuyou.com</p></div></div></div>
           <div class="info-card"><div class="info-item"><span class="info-icon">🕐</span><div><h3>工作时间</h3><p>周一至周五 8:30-18:00<br>周六 9:00-17:00</p></div></div></div>
