@@ -1,5 +1,5 @@
 ﻿import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/jiuyou/Home.vue'
+import HomeView from '../views/jiuyou/HomeView.vue'
 import About from '../views/jiuyou/About.vue'
 import Culture from '../views/jiuyou/Culture.vue'
 import Products from '../views/jiuyou/Products.vue'
@@ -10,8 +10,8 @@ import Downloads from '../views/jiuyou/Downloads.vue'
 import Contact from '../views/jiuyou/Contact.vue'
 
 const routes = [
-  { path: '/home', name: 'HomeAlias', component: () => import(/* webpackChunkName: "home" */ '../views/jiuyou/Home.vue') },
-  { path: '/', name: 'Home', component: Home },
+  { path: '/home', name: 'HomeAlias', component: () => import(/* webpackChunkName: "home" */ '../views/jiuyou/HomeView.vue') },
+  { path: '/', name: 'Home', component: HomeView },
   { path: '/about', name: 'About', component: About },
   { path: '/culture', name: 'Culture', component: Culture },
   { path: '/products', name: 'Products', component: Products },

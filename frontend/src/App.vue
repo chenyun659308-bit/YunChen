@@ -18,11 +18,11 @@ const navItems = [
   { path: '/', label: 'nav_home' },
   { path: '/about', label: 'nav_about' },
   { label: 'nav_products', dropdown: [
-    { path: '/products', label: '全部产品' },
-    { path: '/products?cat=冷暖净风器', label: '冷暖净风器' },
-    { path: '/products?cat=电风扇', label: '电风扇' },
-    { path: '/products?cat=暖风机', label: '暖风机' },
-    { path: '/products?cat=小太阳', label: '小太阳' }
+    { path: '/products', label: 'cat_all' },
+    { path: '/products?cat=冷暖净风器', label: 'cat_air' },
+    { path: '/products?cat=电风扇', label: 'cat_fan' },
+    { path: '/products?cat=暖风机', label: 'cat_heater' },
+    { path: '/products?cat=小太阳', label: 'cat_sun' }
   ]},
   { path: '/culture', label: 'nav_culture' },
   { path: '/news', label: 'nav_news' },
@@ -56,7 +56,7 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
     <header class="navbar">
       <div class="container nav-inner">
         <router-link to="/" class="logo">
-          <img src="/logo.png" alt="久友电器" class="logo-img">
+          <img src="/logo.png" :alt="t('company')" class="logo-img">
         </router-link>
 
         <nav class="nav-links" :class="{ open: menuOpen }">
@@ -64,7 +64,7 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
             <div v-if="item.dropdown" class="nav-dropdown" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
               <router-link to="/products" class="nav-link" :class="{ active: route.path === '/products' }">{{ t(item.label) }} <span class="arrow">▾</span></router-link>
               <div class="dropdown-menu" v-show="showDropdown || menuOpen">
-                <a v-for="sub in item.dropdown" :key="sub.path" class="dropdown-item" @click="goDropdown(sub)">{{ sub.label }}</a>
+                <a v-for="sub in item.dropdown" :key="sub.path" class="dropdown-item" @click="goDropdown(sub)">{{ t(sub.label) }}</a>
               </div>
             </div>
             <router-link v-else :to="item.path" class="nav-link" :class="{ active: route.path === item.path }" @click="menuOpen = false">{{ t(item.label) }}</router-link>
@@ -92,8 +92,8 @@ function goDropdown(item) { router.push(item.path); showDropdown.value = false; 
       <div class="container footer-grid">
         <div class="footer-brand"><img src="/logo.png" alt="久友电器" class="footer-logo"><p>{{ t("footer_about") }}</p><p class="footer-slogan">{{ t("footer_slogan") }}</p></div>
         <div class="footer-links"><h4>{{ t('footer_links') }}</h4><router-link to="/about">{{ t('nav_about') }}</router-link><router-link to="/culture">{{ t('nav_culture') }}</router-link><router-link to="/products">{{ t('nav_products') }}</router-link><router-link to="/news">{{ t('nav_news') }}</router-link></div>
-        <div class="footer-links"><h4>{{ t('footer_service') }}</h4><router-link to="/downloads">{{ t('nav_downloads') }}</router-link><router-link to="/contact">{{ t('nav_contact') }}</router-link><a href="#">售后服务</a><a href="#">常见问题</a></div>
-        <div class="footer-contact"><h4>{{ t('footer_contact') }}</h4><p>{{ t('address') }}</p><p>{{ t('footer_contact_title') }}：{{ t('phone') }}</p><p>📧 {{ t('email') }}</p><p>{{ t('company') }} · 始于2001</p></div>
+        <div class="footer-links"><h4>{{ t('footer_service') }}</h4><router-link to="/downloads">{{ t('nav_downloads') }}</router-link><router-link to="/contact">{{ t('nav_contact') }}</router-link><a href="#">{{ t('after_sales') }}</a><a href="#">{{ t('faq') }}</a></div>
+        <div class="footer-contact"><h4>{{ t('footer_contact') }}</h4><p>{{ t('address') }}</p><p>{{ t('footer_contact_title') }}：{{ t('phone') }}</p><p>📧 {{ t('email') }}</p><p>{{ t('company') }} · {{ t('since') }}</p></div>
       </div>
       <div class="footer-bottom"><div class="container"><p>{{ t('footer_copyright') }}</p></div></div>
     </footer>
