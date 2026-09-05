@@ -2,42 +2,137 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { products } from '../../data/products.js'
+import { useI18n } from '../../i18n.js'
 
 const route = useRoute()
 const router = useRouter()
+const { locale } = useI18n()
 const id = Number(route.params.id)
 const product = computed(() => products.find(p => p.id === id))
 const related = computed(() => products.filter(p => p.category === product.value?.category && p.id !== id).slice(0, 4))
 function goDetail(id) { router.push('/product/' + id) }
+
+const catEnMap = {
+  '全部产品': 'All Products',
+  '冷暖净风器': 'Air Purifier & Heater',
+  '电风扇': 'Electric Fans',
+  '暖风机': 'Heaters',
+  '小太阳': 'Sun Heaters'
+}
+const specMap = {
+  '150m³/h新风': '150 m³/h Fresh Air',
+  '28dB低噪': '28dB Low Noise',
+  'APP控制': 'APP Control',
+  'APP远程控制': 'APP Remote Control',
+  'CADR 600m³/h': 'CADR 600 m³/h',
+  'CADR 80m³/h': 'CADR 80 m³/h',
+  'HEPA过滤': 'HEPA Filtration',
+  'HEPA高效过滤': 'High-Efficiency HEPA Filter',
+  'PM2.5/甲醛显示': 'PM2.5/Formaldehyde Display',
+  'PM2.5去除99.9%': '99.9% PM2.5 Removal',
+  'USB供电': 'USB Powered',
+  'WiFi智能控制': 'WiFi Smart Control',
+  '三重过滤': 'Triple Filtration',
+  '五重过滤': 'Five-Stage Filtration',
+  '倾倒断电': 'Tilt Cut-off',
+  '全热交换': 'Full Heat Exchange',
+  '冷暖一体': 'Heating & Cooling Combo',
+  '壁挂安装': 'Wall-Mounted Installation',
+  '多档风速': 'Multiple Wind Speeds',
+  '安全防护': 'Safety Protection',
+  '快速制热': 'Fast Heating',
+  '快速发热': 'Fast Heat-up',
+  '智能控温': 'Intelligent Temperature Control',
+  '智能温控': 'Smart Temperature Control',
+  '杀菌率99.9%': '99.9% Sterilization',
+  '桌面设计': 'Desktop Design',
+  '滤芯更换提醒': 'Filter Replacement Reminder',
+  '睡眠模式26dB': 'Sleep Mode 26dB',
+  '空气质量监测': 'Air Quality Monitoring',
+  '紫外线消毒': 'UV Sterilization',
+  '节能环保': 'Energy Efficient',
+  '节能省电': 'Energy Saving',
+  '负离子净化': 'Negative Ion Purification',
+  '适用10-20㎡': 'Suitable for 10-20 m²',
+  '适用20-40㎡': 'Suitable for 20-40 m²',
+  '适用50-90㎡': 'Suitable for 50-90 m²',
+  '适用医疗场所': 'Suitable for Medical Use',
+  '静音运行': 'Quiet Operation'
+}
+const descMap = {
+  '集制冷、制热、净化于一体，高效HEPA滤网，智能温控系统，低至28dB静音运行。': 'Integrated cooling, heating and purification with high-efficiency HEPA filter, smart temperature control and operation as quiet as 28dB.',
+  '壁挂式安装，150m³/h新风量，全热交换芯节能省电，三重过滤系统，PM2.5去除率99.9%。': 'Wall-mounted with 150 m³/h fresh air, full heat exchange core for energy savings, triple filtration and 99.9% PM2.5 removal.',
+  'CADR值600m³/h，适用面积50-90㎡，五重过滤系统，实时PM2.5/甲醛/VOCs显示，睡眠模式仅26dB。': 'CADR 600 m³/h for 50-90 m² spaces, five-stage filtration with real-time PM2.5/formaldehyde/VOCs display and 26dB sleep mode.',
+  '医用级紫外线消毒+HEPA过滤，有效杀灭99.9%细菌病毒，负离子净化。': 'Medical-grade UV sterilization plus HEPA filtration eliminates 99.9% of bacteria and viruses with negative ion purification.',
+  '精致小巧桌面设计，CADR值80m³/h，适用面积10-20㎡，USB供电，静音运行。': 'Compact desktop design with CADR 80 m³/h for 10-20 m², USB powered and quiet operation.',
+  '电风扇，多档风速，静音运行，节能环保。': 'Electric fan with multiple wind speeds, quiet operation and energy efficiency.',
+  '暖风机，快速制热，智能控温，安全防护。': 'Fan heater with fast heating, intelligent temperature control and safety protection.',
+  '小太阳取暖器，快速发热，安全倾倒断电，节能省电。': 'Sun heater with fast heat-up, tilt cut-off safety and energy saving.'
+}
+const uiCopy = computed(() => locale.value === 'en' ? {
+  crumbHome: 'Home / Products / ',
+  onSale: 'On Sale',
+  warranty: '3-Year Warranty',
+  warrantyLabel: 'Warranty',
+  model: 'Model',
+  series: 'Series',
+  status: 'Status',
+  features: 'Product Features',
+  back: 'Back to Products',
+  specs: 'Specifications',
+  specParam: 'Spec ',
+  related: 'Related Products',
+  notFound: 'Product Not Found',
+  backTo: 'Back to Products'
+} : {
+  crumbHome: '首页 / 产品中心 / ',
+  onSale: '在售',
+  warranty: '整机三年',
+  warrantyLabel: '保修期限',
+  model: '产品型号',
+  series: '产品系列',
+  status: '产品状态',
+  features: '产品特点',
+  back: '← 返回产品中心',
+  specs: '技术规格',
+  specParam: '规格参数 ',
+  related: '相关产品',
+  notFound: '产品未找到',
+  backTo: '返回产品中心'
+})
+function displayCat(cat) { return locale.value === 'en' ? (catEnMap[cat] || cat) : cat }
+function displaySpec(s) { return locale.value === 'en' ? (specMap[s] || s) : s }
+function displayDesc(d) { return locale.value === 'en' ? (descMap[d] || d) : d }
 </script>
 <template>
   <div class="detail-page" v-if="product">
-    <section class="hero-section"><div class="hero-bg"><img :src="product.image.replace('w=600&h=400','w=1200&h=700')" :alt="product.name"></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">首页 / 产品中心 / {{ product.name }}</span><h1>{{ product.name }}</h1><span class="hero-cat">{{ product.category }}</span></div></section>
+    <section class="hero-section"><div class="hero-bg"><img :src="product.image.replace('w=600&h=400','w=1200&h=700')" :alt="product.name"></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">{{ uiCopy.crumbHome }}{{ product.name }}</span><h1>{{ product.name }}</h1><span class="hero-cat">{{ displayCat(product.category) }}</span></div></section>
 
     <section class="section"><div class="container">
       <div class="detail-layout">
         <div class="detail-image"><img :src="product.image.replace('w=600&h=400','w=800&h=600')" :alt="product.name"></div>
         <div class="detail-info">
           <h2>{{ product.name }}</h2>
-          <span class="detail-cat">{{ product.category }}</span>
-          <p class="detail-desc" v-if="product.category !== '冷暖净风器'">{{ product.desc }}</p>
-          <div class="detail-features" v-if="product.category !== '冷暖净风器'"><h3>产品特点</h3><ul><li v-for="s in product.specs" :key="s">{{ s }}</li></ul></div>
-          <div class="detail-meta"><div><h4>产品型号</h4><p>{{ product.name.split(' ')[0] }}</p></div><div><h4>产品系列</h4><p>{{ product.category }}</p></div><div><h4>产品状态</h4><p>在售</p></div><div><h4>保修期限</h4><p>整机三年</p></div></div>
-          <button class="back-btn" @click="router.push('/products')">← 返回产品中心</button>
+          <span class="detail-cat">{{ displayCat(product.category) }}</span>
+          <p class="detail-desc" v-if="product.category !== '冷暖净风器'">{{ displayDesc(product.desc) }}</p>
+          <div class="detail-features" v-if="product.category !== '冷暖净风器'"><h3>{{ uiCopy.features }}</h3><ul><li v-for="s in product.specs" :key="s">{{ displaySpec(s) }}</li></ul></div>
+          <div class="detail-meta"><div><h4>{{ uiCopy.model }}</h4><p>{{ product.name.split(' ')[0] }}</p></div><div><h4>{{ uiCopy.series }}</h4><p>{{ displayCat(product.category) }}</p></div><div><h4>{{ uiCopy.status }}</h4><p>{{ uiCopy.onSale }}</p></div><div><h4>{{ uiCopy.warrantyLabel }}</h4><p>{{ uiCopy.warranty }}</p></div></div>
+          <button class="back-btn" @click="router.push('/products')">{{ uiCopy.back }}</button>
         </div>
       </div>
     </div></section>
 
-    <section class="section specs-section" v-if="product.category !== '冷暖净风器'"><div class="container"><div class="section-header"><span class="section-tag">SPECIFICATIONS</span><h2 class="section-title">技术规格</h2></div>
-      <div class="specs-table"><div v-for="(s,i) in product.specs" :key="i" class="spec-row"><span class="spec-label">规格参数 {{ i+1 }}</span><span class="spec-value">{{ s }}</span></div></div>
+    <section class="section specs-section" v-if="product.category !== '冷暖净风器'"><div class="container"><div class="section-header"><span class="section-tag">SPECIFICATIONS</span><h2 class="section-title">{{ uiCopy.specs }}</h2></div>
+      <div class="specs-table"><div v-for="(s,i) in product.specs" :key="i" class="spec-row"><span class="spec-label">{{ uiCopy.specParam }}{{ i+1 }}</span><span class="spec-value">{{ displaySpec(s) }}</span></div></div>
     </div></section>
 
-    <section class="section related-section" v-if="related.length"><div class="container"><div class="section-header"><span class="section-tag">RELATED</span><h2 class="section-title">相关产品</h2></div>
+    <section class="section related-section" v-if="related.length"><div class="container"><div class="section-header"><span class="section-tag">RELATED</span><h2 class="section-title">{{ uiCopy.related }}</h2></div>
       <div class="related-grid"><div v-for="p in related" :key="p.id" class="related-card" @click="goDetail(p.id)"><img :src="p.image" :alt="p.name"><h3>{{ p.name }}</h3></div></div>
     </div></section>
   </div>
-  <div class="not-found" v-else><h2>产品未找到</h2><router-link to="/products">返回产品中心</router-link></div>
+  <div class="not-found" v-else><h2>{{ uiCopy.notFound }}</h2><router-link to="/products">{{ uiCopy.backTo }}</router-link></div>
 </template>
+
 <style scoped>
 .detail-page { background: #fff; }
 .hero-section { position: relative; height: 55vh; min-height: 380px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
