@@ -1,31 +1,74 @@
 ﻿<script setup>
+import { computed } from 'vue'
+import { useI18n } from '../../i18n.js'
+
+const { locale } = useI18n()
+
+const zhCopy = {
+  crumb: '首页 / 样本册下载',
+  heroTitle: '产品样本册',
+  heroDesc: '久友电器全系列产品样本册，了解更多产品详情与技术参数',
+  intro: '欢迎下载久友电器产品样本册。样本册涵盖公司全系列产品详细信息、技术参数及应用场景，为您提供全面的产品参考。',
+  sectionTitle: '选择样本册',
+  sectionDesc: '点击下方卡片即可下载对应的 PDF 样本册',
+  sampleType: '产品样本册',
+  format: '格式',
+  size: '大小',
+  pages: '页数',
+  pageUnit: '页',
+  dl: '下载样本册',
+  tips: '样本册为 PDF 格式，建议使用 Adobe Acrobat Reader 或浏览器内置 PDF 阅读器打开。'
+}
+
+const enCopy = {
+  crumb: 'Home / Catalog Downloads',
+  heroTitle: 'Product Catalogs',
+  heroDesc: 'Browse complete JiuYou Electric product catalogs and explore full details, technical specifications and more.',
+  intro: 'Welcome to the JiuYou Electric catalog downloads. Our catalogs cover detailed product information, technical specifications and application scenarios for the complete product range.',
+  sectionTitle: 'Choose a Catalog',
+  sectionDesc: 'Click a card below to download the PDF catalog.',
+  sampleType: 'Product Catalog',
+  format: 'Format',
+  size: 'Size',
+  pages: 'Pages',
+  pageUnit: ' Pages',
+  dl: 'Download Catalog',
+  tips: 'Catalogs are in PDF format. We recommend Adobe Acrobat Reader or the built-in PDF viewer in your browser.'
+}
+
+const copy = computed(() => locale.value === 'en' ? enCopy : zhCopy)
+
 const samples = [
-  { id: 1, name: '久友风扇样本册', file: '/downloads/风扇样本册.pdf', size: '19.6MB', pages: 32, date: '2026-07' },
-  { id: 2, name: '久友取暖器样本册', file: '/downloads/取暖器样本册.pdf', size: '10.3MB', pages: 20, date: '2026-07' }
+  { id: 1, nameZh: '久友风扇样本册', nameEn: 'JiuYou Fan Catalog', file: '/downloads/风扇样本册.pdf', size: '19.6MB', pages: 32, date: '2026-07' },
+  { id: 2, nameZh: '久友取暖器样本册', nameEn: 'JiuYou Heater Catalog', file: '/downloads/取暖器样本册.pdf', size: '10.3MB', pages: 20, date: '2026-07' }
 ]
+
+function sampleName(s) {
+  return locale.value === 'en' ? s.nameEn : s.nameZh
+}
 </script>
 <template>
   <div class="downloads-page">
-    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">首页 / 样本册下载</span><h1>产品样本册</h1><p>久友电器全系列产品样本册，了解更多产品详情与技术参数</p></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">{{ copy.crumb }}</span><h1>{{ copy.heroTitle }}</h1><p>{{ copy.heroDesc }}</p></div></section>
 
-    <section class="intro-section"><div class="container"><p class="intro-text">欢迎下载久友电器产品样本册。样本册涵盖公司全系列产品详细信息、技术参数及应用场景，为您提供全面的产品参考。</p></div></section>
+    <section class="intro-section"><div class="container"><p class="intro-text">{{ copy.intro }}</p></div></section>
 
     <section class="section"><div class="container">
-      <div class="section-header"><span class="section-tag">CATALOGS</span><h2 class="section-title">选择样本册</h2><p class="section-desc">点击下方卡片即可下载对应的 PDF 样本册</p></div>
+      <div class="section-header"><span class="section-tag">CATALOGS</span><h2 class="section-title">{{ copy.sectionTitle }}</h2><p class="section-desc">{{ copy.sectionDesc }}</p></div>
       <div class="sample-grid">
         <div v-for="s in samples" :key="s.id" class="sample-card">
           <div class="card-top">
             <div class="sample-icon"><svg viewBox="0 0 48 48" fill="none"><rect x="6" y="4" width="36" height="40" rx="3" stroke="#c9a84c" stroke-width="1.5"/><path d="M16 14h16M16 20h16M16 26h12" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round"/><path d="M34 30l6 6-6 6" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <span class="sample-type">产品样本册</span>
+            <span class="sample-type">{{ copy.sampleType }}</span>
           </div>
-          <h3 class="sample-name">{{ s.name }}</h3>
-          <div class="sample-specs"><span class="spec-item"><span class="spec-label">格式</span><span class="spec-val">PDF</span></span><span class="spec-divider"></span><span class="spec-item"><span class="spec-label">大小</span><span class="spec-val">{{ s.size }}</span></span><span class="spec-divider"></span><span class="spec-item"><span class="spec-label">页数</span><span class="spec-val">{{ s.pages }}页</span></span></div>
-          <a :href="s.file" class="dl-btn" download><span class="dl-icon">↓</span> 下载样本册</a>
+          <h3 class="sample-name">{{ sampleName(s) }}</h3>
+          <div class="sample-specs"><span class="spec-item"><span class="spec-label">{{ copy.format }}</span><span class="spec-val">PDF</span></span><span class="spec-divider"></span><span class="spec-item"><span class="spec-label">{{ copy.size }}</span><span class="spec-val">{{ s.size }}</span></span><span class="spec-divider"></span><span class="spec-item"><span class="spec-label">{{ copy.pages }}</span><span class="spec-val">{{ s.pages }}{{ copy.pageUnit }}</span></span></div>
+          <a :href="s.file" class="dl-btn" download><span class="dl-icon">↓</span> {{ copy.dl }}</a>
         </div>
       </div>
     </div></section>
 
-    <section class="tips-section"><div class="container"><div class="tips-box"><span class="tips-icon">ⓘ</span><p>样本册为 PDF 格式，建议使用 Adobe Acrobat Reader 或浏览器内置 PDF 阅读器打开。</p></div></div></section>
+    <section class="tips-section"><div class="container"><div class="tips-box"><span class="tips-icon">ⓘ</span><p>{{ copy.tips }}</p></div></div></section>
   </div>
 </template>
 <style scoped>
