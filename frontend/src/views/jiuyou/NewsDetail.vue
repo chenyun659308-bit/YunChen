@@ -29,7 +29,7 @@ function backText() {
 </script>
 <template>
   <div class="detail-page" v-if="article">
-    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">{{ crumb() }}</span><h1>{{ titleOf() }}</h1><span class="hero-date">{{ article.date }}</span></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb"><router-link to="/" class="crumb-home">{{ locale === 'en' ? 'Home' : '首页' }}</router-link> / {{ t('news_hero') }}</span><h1>{{ titleOf() }}</h1><span class="hero-date">{{ article.date }}</span></div></section>
     <section class="section"><div class="container"><h2 style="text-align:center;color:#c9a84c;margin-bottom:30px;">{{ titleOf() }}</h2><div class="article-content"><p v-for="(p, i) in paragraphs()" :key="i" class="article-p">{{ p }}</p></div><div style="text-align:center;margin-top:40px;" v-if="!paragraphs().length"><p style="color:#999;">{{ emptyText() }}</p></div><button class="back-btn" @click="router.push('/news')">{{ backText() }}</button></div></section>
   </div>
 </template>

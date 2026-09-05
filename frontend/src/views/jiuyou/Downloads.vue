@@ -49,7 +49,7 @@ function sampleName(s) {
 </script>
 <template>
   <div class="downloads-page">
-    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">{{ copy.crumb }}</span><h1>{{ copy.heroTitle }}</h1><p>{{ copy.heroDesc }}</p></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb"><router-link to="/" class="crumb-home">{{ locale === 'en' ? 'Home' : '首页' }}</router-link> / {{ copy.crumb.split(' / ')[1] }}</span><h1>{{ copy.heroTitle }}</h1><p>{{ copy.heroDesc }}</p></div></section>
 
     <section class="intro-section"><div class="container"><p class="intro-text">{{ copy.intro }}</p></div></section>
 

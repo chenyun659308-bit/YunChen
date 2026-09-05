@@ -44,7 +44,7 @@ const copy = computed(() => locale.value === 'en' ? enCopy : zhCopy)
 </script>
 ﻿<template>
   <div class="culture-page">
-    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">{{ copy.crumb }}</span><h1>{{ copy.heroTitle }}</h1><p>{{ copy.heroDesc }}</p></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb"><router-link to="/" class="crumb-home">{{ locale === 'en' ? 'Home' : '首页' }}</router-link> / {{ copy.crumb.split(' / ')[1] }}</span><h1>{{ copy.heroTitle }}</h1><p>{{ copy.heroDesc }}</p></div></section>
     <section class="section intro-section"><div class="container"><p class="intro-text">{{ copy.intro }}</p></div></section>
     <section class="section culture-section"><div class="container">
       <div class="culture-grid">

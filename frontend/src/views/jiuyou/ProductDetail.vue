@@ -102,7 +102,8 @@ const descMap = {
   '小太阳取暖器，快速发热，安全倾倒断电，节能省电。': 'Sun heater with fast heat-up, tilt cut-off safety and energy saving.'
 }
 const uiCopy = computed(() => locale.value === 'en' ? {
-  crumbHome: 'Home / Products / ',
+  homeLabel: 'Home',
+  productPage: 'Products',
   onSale: 'On Sale',
   warranty: '3-Year Warranty',
   warrantyLabel: 'Warranty',
@@ -117,7 +118,8 @@ const uiCopy = computed(() => locale.value === 'en' ? {
   notFound: 'Product Not Found',
   backTo: 'Back to Products'
 } : {
-  crumbHome: '首页 / 产品中心 / ',
+  homeLabel: '首页',
+  productPage: '产品中心',
   onSale: '在售',
   warranty: '整机三年',
   warrantyLabel: '保修期限',
@@ -154,7 +156,7 @@ const specList = computed(() => {
 </script>
 <template>
   <div class="detail-page" v-if="product">
-    <section class="hero-section"><div class="hero-bg"><img :src="imageUrl(product, 'w=600&h=400', 'w=1200&h=700')" :alt="itemName(product)"></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">{{ uiCopy.crumbHome }}{{ itemName(product) }}</span><h1>{{ itemName(product) }}</h1><span class="hero-cat">{{ displayCat(product.category) }}</span></div></section>
+    <section class="hero-section"><div class="hero-bg"><img :src="imageUrl(product, 'w=600&h=400', 'w=1200&h=700')" :alt="itemName(product)"></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb"><router-link to="/" class="crumb-home">{{ uiCopy.homeLabel }}</router-link> / {{ uiCopy.productPage }} / {{ itemName(product) }}</span><h1>{{ itemName(product) }}</h1><span class="hero-cat">{{ displayCat(product.category) }}</span></div></section>
 
     <section class="section"><div class="container">
       <div class="detail-layout">

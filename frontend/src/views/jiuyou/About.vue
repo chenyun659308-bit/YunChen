@@ -50,7 +50,7 @@ const copy = computed(() => locale.value === 'en' ? enCopy : zhCopy)
 </script>
 <template>
   <div class="about-page">
-    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb">{{ copy.crumb }}</span><h1>{{ copy.heroTitle }}</h1><p>{{ copy.heroDesc }}</p></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content" style="position:relative;z-index:1;"><span class="breadcrumb"><router-link to="/" class="crumb-home">{{ locale === 'en' ? 'Home' : '首页' }}</router-link> / {{ copy.crumb.split(' / ')[1] }}</span><h1>{{ copy.heroTitle }}</h1><p>{{ copy.heroDesc }}</p></div></section>
 
     <!-- Company intro -->
     <section class="section"><div class="container"><div class="section-header"><span class="section-tag">ABOUT JIUYOU</span><h2 class="section-title">{{ t('about_hero_title') }}</h2></div>

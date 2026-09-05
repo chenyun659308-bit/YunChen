@@ -78,7 +78,7 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
 </script>
 <template>
   <div class="products-page">
-    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb">首页 / {{ t('pro_hero') }}</span><h1>{{ t('pro_hero') }}</h1><p>{{ t('pro_hero_desc') }}</p></div></section>
+    <section class="page-hero"><div class="hero-bg"><img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&h=500&fit=crop" alt=""></div><div class="hero-overlay"></div><div class="hero-content"><span class="breadcrumb"><router-link to="/" class="crumb-home">{{ locale === 'en' ? 'Home' : '首页' }}</router-link> / {{ t('pro_hero') }}</span><h1>{{ t('pro_hero') }}</h1><p>{{ t('pro_hero_desc') }}</p></div></section>
     <div class="container main-layout">
       <!-- Left sidebar catalog -->
       <aside class="sidebar">
