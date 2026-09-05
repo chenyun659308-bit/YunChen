@@ -2,9 +2,11 @@
 import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { products, categories } from '../../data/products.js'
+import { useI18n } from '../../i18n.js'
 
 const route = useRoute()
 const router = useRouter()
+const { t, l, locale } = useI18n()
 const searchQ = ref(route.query.q || '')
 const activeCat = ref(route.query.cat || '全部产品')
 const currentPage = ref(1)
@@ -27,6 +29,16 @@ const catProducts = computed(() => {
   products.filter(p => p.category).forEach(p => { if (!map[p.category]) map[p.category] = []; map[p.category].push(p) })
   return Object.entries(map)
 })
+const catEnMap = {
+  '全部产品': 'All Products',
+  '冷暖净风器': 'Air Purifier & Heater',
+  '电风扇': 'Electric Fans',
+  '暖风机': 'Heaters',
+  '小太阳': 'Sun Heaters'
+}
+function displayCat(cat) {
+  return locale.value === 'en' ? (catEnMap[cat] || cat) : cat
+}
 function toggleCat(cat) {
   if (expandedCats.value[cat] === undefined) expandedCats.value[cat] = true
   expandedCats.value[cat] = !expandedCats.value[cat]
@@ -46,7 +58,7 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
         <h3 class="sidebar-title">{{ t('pro_catalog') }}</h3>
         <div v-for="[cat, items] in catProducts" :key="cat" class="sidebar-group">
           <h4 class="sidebar-cat" @click="setCat(cat)">
-            <span class="cat-label">{{ cat }}</span>
+            <span class="cat-label">{{ displayCat(cat) }}</span>
             <span class="toggle-icon" @click.stop="toggleCat(cat)">{{ expandedCats[cat] ? '−' : '+' }}</span>
           </h4>
           <transition name="collapse">
@@ -56,8 +68,8 @@ function nextPage() { if (currentPage.value < totalPages.value) currentPage.valu
       </aside>
       <!-- Right content -->
       <main class="main-content">
-        <div class="toolbar"><div class="search-box"><input v-model="searchQ" placeholder="搜索产品名称" class="search-input"><button @click="currentPage=1" class="search-btn">搜索</button></div><span class="result-count">共 {{ filtered.length }} {{ t('pro_count') }}</span></div>
-        <div v-if="paged.length === 0" class="empty-state"><p>没有找到匹配的产品</p></div>
+        <div class="toolbar"><div class="search-box"><input v-model="searchQ" :placeholder="t('pro_search')" class="search-input"><button @click="currentPage=1" class="search-btn">{{ t('search_btn') }}</button></div><span class="result-count">{{ locale === 'en' ? '' : '共 ' }}{{ filtered.length }} {{ t('pro_count') }}</span></div>
+        <div v-if="paged.length === 0" class="empty-state"><p>{{ t('pro_empty') }}</p></div>
         <div v-else class="product-grid"><div v-for="p in paged" :key="p.id" class="product-card"><div class="product-img"><img :src="p.image" :alt="p.name"></div><div class="product-info"><h3>{{ l(p, "name") }}</h3><button class="detail-btn" @click="goDetail(p.id)">{{ t('pro_detail') }}</button></div></div></div>
         <!-- Pagination -->
         <div class="pagination" v-if="totalPages > 1"><button class="page-btn" :disabled="currentPage===1" @click="prevPage">{{ t('pro_prev') }}</button><button v-for="p in totalPages" :key="p" :class="['page-btn', { active: p === currentPage }]" @click="currentPage = p">{{ p }}</button><button class="page-btn" :disabled="currentPage===totalPages" @click="nextPage">{{ t('pro_next') }}</button></div>
